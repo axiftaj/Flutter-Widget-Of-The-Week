@@ -1,16 +1,11 @@
-# asif
 
-A new Flutter project.
+## Flutter Widget Of The week
 
-## Getting Started
+I have created this playkist on youtube to teach you everyday a new widget a bit more in details with practical exmaples.
 
-This project is a starting point for a Flutter application.
+- [Tutorials: Youtube](https://youtube.com/playlist?list=PLFyjjoCMAPtyjgH1Y2vBt4GlAd9FZ5xeh)
 
-A few resources to get you started if this is your first Flutter project:
+## Flutter Bootcamp 2022
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Playlist: Youtube](https://youtube.com/playlist?list=PLFyjjoCMAPtxq8V9fuVmgsYKLNIKqSEV4)
+- [RoadMap: Docs File ](https://lnkd.in/dHF8yc68)
