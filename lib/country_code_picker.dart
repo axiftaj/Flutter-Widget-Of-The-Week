@@ -26,8 +26,8 @@ class _CountryCodePickerWidgetState extends State<CountryCodePickerWidget> {
             child: TextButton(onPressed: (){
               showCountryPicker(
                   context: context,
+                  showPhoneCode: true,
                   countryListTheme: CountryListThemeData(
-                    textStyle: TextStyle(fontSize: 20),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10)
                     ),

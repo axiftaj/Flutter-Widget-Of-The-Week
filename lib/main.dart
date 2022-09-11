@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'animated_container_widget.dart';
 import 'country_code_picker.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: CountryCodePickerWidget(),
+      home: AnimatedContainerWidget(),
     );
   }
 }
