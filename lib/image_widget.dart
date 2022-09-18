@@ -37,8 +37,9 @@ class ImageBuilderWidget extends StatelessWidget {
         child: ClipRRect(
           child: Image(
             fit: BoxFit.cover,
-            height: 40,
-            width: 40,
+            height: height,
+            width: width,
+            repeat: ImageRepeat.repeatY,
             image:  NetworkImage(image),
             errorBuilder: (BuildContext context, Object exception,
                 StackTrace? stackTrace) {
