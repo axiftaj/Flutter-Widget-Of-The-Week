@@ -1,7 +1,6 @@
+import 'package:asif/shared_preferenace_widget.dart';
 import 'package:flutter/material.dart';
-import 'animated_container_widget.dart';
-import 'country_code_picker.dart';
-import 'image_widget.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ImageWidget(),
+      home: SharedPreferenceWidget(),
     );
   }
 }
