@@ -144,6 +144,7 @@ class _PhoneNumberValidationState extends State<PhoneNumberValidation> {
                         mobileOnly: mobileOnly,
                         shouldFormat: shouldFormat,
                         useRtl: useRtl,
+
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -221,34 +222,30 @@ class PhoneFieldView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutofillGroup(
-      child: Directionality(
-        textDirection: useRtl ? TextDirection.rtl : TextDirection.ltr,
-        child: PhoneFormField(
-          key: inputKey,
-          controller: controller,
-          shouldFormat: shouldFormat && !useRtl,
-          autofocus: true,
-          autofillHints: const [AutofillHints.telephoneNumber],
-          countrySelectorNavigator: selectorNavigator,
-          defaultCountry: IsoCode.US,
-          decoration: InputDecoration(
-            label: withLabel ? const Text('Phone') : null,
-            border: outlineBorder
-                ? const OutlineInputBorder()
-                : const UnderlineInputBorder(),
-            hintText: withLabel ? '' : 'Phone',
-          ),
-          enabled: true,
-          showFlagInInput: true,
-          validator: _getValidator(),
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          cursorColor: Theme.of(context).colorScheme.primary,
-          // ignore: avoid_print
-          onSaved: (p) => print('saved $p'),
-          // ignore: avoid_print
-          onChanged: (p) => print('changed $p'),
-          isCountryChipPersistent: isCountryChipPersistent,
+      child: PhoneFormField(
+        key: inputKey,
+        controller: controller,
+        shouldFormat: shouldFormat && !useRtl,
+        autofocus: true,
+        autofillHints: const [AutofillHints.telephoneNumber],
+        countrySelectorNavigator: selectorNavigator,
+        defaultCountry: IsoCode.US,
+        decoration: InputDecoration(
+          fillColor: Colors.red,
+          label: withLabel ? const Text('Phone') : null,
+          border: outlineBorder ? const OutlineInputBorder() : const UnderlineInputBorder(),
+          hintText: withLabel ? '' : 'Phone',
         ),
+        enabled: true,
+        showFlagInInput: true,
+        validator: _getValidator(),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        cursorColor: Theme.of(context).colorScheme.primary,
+        // ignore: avoid_print
+        onSaved: (p) => print('saved $p'),
+        // ignore: avoid_print
+        onChanged: (p) => print('changed $p'),
+        isCountryChipPersistent: isCountryChipPersistent,
       ),
     );
   }
