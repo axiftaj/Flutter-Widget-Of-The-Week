@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   country_picker: ^2.0.16
   shared_preferences: ^2.0.15
+  phone_form_field: ^7.0.2
 
 dev_dependencies:
   flutter_test:
