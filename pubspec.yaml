@@ -37,6 +37,8 @@ dependencies:
   country_picker: ^2.0.16
   shared_preferences: ^2.0.15
   phone_form_field: ^7.0.2
+  intl_phone_number_input: ^0.7.1
+  syncfusion_flutter_sliders:
 
 dev_dependencies:
   flutter_test:
