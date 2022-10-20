@@ -41,7 +41,7 @@ class _IntPhoneState extends State<IntPhone> {
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),
-                selectorConfig: SelectorConfig(
+                selectorConfig: const SelectorConfig(
                   selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                 ),
                 ignoreBlank: false,
@@ -51,7 +51,7 @@ class _IntPhoneState extends State<IntPhone> {
                 textFieldController: controller,
                 formatInput: true,
 
-                keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true),
                 inputBorder: OutlineInputBorder(),
 
                 onSaved: (PhoneNumber number) {
