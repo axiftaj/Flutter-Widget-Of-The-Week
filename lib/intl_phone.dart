@@ -46,7 +46,7 @@ class _IntPhoneState extends State<IntPhone> {
                 ),
                 ignoreBlank: false,
                 autoValidateMode: AutovalidateMode.disabled,
-                selectorTextStyle: TextStyle(color: Colors.black),
+                selectorTextStyle: const TextStyle(color: Colors.black),
                 initialValue: number,
                 textFieldController: controller,
                 formatInput: true,
