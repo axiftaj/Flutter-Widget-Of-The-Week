@@ -149,6 +149,18 @@ class _PhoneNumberValidationState extends State<PhoneNumberValidation> {
                     ),
                     const SizedBox(height: 12),
                     Text(controller.value.toString()),
+                    ElevatedButton(
+                      onPressed:(){
+                        if(formKey.currentState!.validate()){
+                          print('enter phone number');
+                        }
+
+                        if(phoneKey.currentState!.validate()){
+                          print('enter validation');
+                        }
+                      },
+                      child: Text('Validation') ,
+                    ),
                     Text('is valid mobile number '
                         '${controller.value?.isValid(type: PhoneNumberType.mobile) ?? 'false'}'),
                     Text(
@@ -226,7 +238,7 @@ class PhoneFieldView extends StatelessWidget {
         key: inputKey,
         controller: controller,
         shouldFormat: shouldFormat && !useRtl,
-        autofocus: true,
+      //  autofocus: true,
         autofillHints: const [AutofillHints.telephoneNumber],
         countrySelectorNavigator: selectorNavigator,
         defaultCountry: IsoCode.US,

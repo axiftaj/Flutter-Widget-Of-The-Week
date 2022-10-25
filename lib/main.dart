@@ -1,8 +1,7 @@
-import 'package:asif/custom_slider.dart';
-import 'package:asif/intl_phone.dart';
-import 'package:asif/phone_number_validation.dart';
-import 'package:asif/shared_preferenace_widget.dart';
+
 import 'package:flutter/material.dart';
+
+import 'dragable_example.dart';
 
 
 void main() {
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PhoneNumberValidation(),
+      home: DraggbaleExample(),
     );
   }
 }
