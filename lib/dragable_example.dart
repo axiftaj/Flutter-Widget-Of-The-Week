@@ -124,7 +124,6 @@ class _DraggbaleExampleState extends State<DraggbaleExample> with TickerProvider
                     child: Draggable(
                       data: _items,
                       onDragEnd: (details) {
-                        print('wasAccepted: ${details.wasAccepted.toString()}');
                       },
                       onDragStarted: (){
                         image = _items[index].imageProvider ;
@@ -168,8 +167,8 @@ class DraggingListItem extends StatelessWidget {
         key: dragKey,
         borderRadius: BorderRadius.circular(12.0),
         child: SizedBox(
-          height: 150,
-          width: 150,
+          height: 120,
+          width: 120,
           child: Opacity(
             opacity: 0.85,
             child: Image(
@@ -219,8 +218,8 @@ class MenuListItem extends StatelessWidget {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 100),
                 curve: Curves.easeInOut,
-                height: isDepressed ? 115 : 120,
-                width: isDepressed ? 115 : 120,
+                height: isDepressed ? 100 : 90,
+                width: isDepressed ? 100 : 90,
                 child: Image(
                   image: NetworkImage(photoProvider),
                   fit: BoxFit.cover,
