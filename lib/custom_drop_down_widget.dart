@@ -13,6 +13,8 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
 
   bool isExpanded = false ;
   String selectedValue = 'Select option' ;
+
+  //list that will be expanded
   List<String> politicsList = ['Left Wing', 'Liberal', 'Moderate', 'Conservative', 'Libertarian', 'Apolitical'] ;
 
 
