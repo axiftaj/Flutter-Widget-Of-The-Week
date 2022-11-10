@@ -39,7 +39,10 @@ dependencies:
   phone_form_field: ^7.0.2
   intl_phone_number_input: ^0.7.1
   reorderable_grid_view: ^2.2.5
+  html_editor_enhanced: ^2.5.0
+  flutter_slidable: ^2.0.0
   syncfusion_flutter_sliders:
+
 
 
 dev_dependencies:
