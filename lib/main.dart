@@ -4,7 +4,7 @@ import 'package:asif/flutter_slidebale_widget.dart';
 import 'package:asif/html_editor.dart';
 import 'package:flutter/material.dart';
 
-import 'dragable_example.dart';
+
 
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HtmlEditorExample(title: 'asdf',),
+      home: ImageSliderDemo(),
     );
   }
 }
