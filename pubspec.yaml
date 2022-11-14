@@ -38,10 +38,12 @@ dependencies:
   shared_preferences: ^2.0.15
   phone_form_field: ^7.0.2
   intl_phone_number_input: ^0.7.1
+  appflowy_editor: ^0.0.7
   reorderable_grid_view: ^2.2.5
   html_editor_enhanced: ^2.5.0
-  flutter_swipe_action_cell: ^3.0.4
-  carousel_slider: ^4.1.1
+
+  flutter_swipe_action_cell:
+  carousel_slider:
   syncfusion_flutter_sliders:
 
 
