@@ -1,9 +1,6 @@
-
-import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:asif/html_editor.dart';
+import 'package:asif/custom_animation.dart';
+import 'package:asif/custom_navifation.dart';
 import 'package:flutter/material.dart';
-
-
 
 
 void main() {
@@ -19,13 +16,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        AppFlowyEditorLocalizations.delegate,
-      ],
+
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: CustomNavigation(),
     );
   }
+
+
 }
