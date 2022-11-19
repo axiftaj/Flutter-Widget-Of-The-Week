@@ -1,5 +1,6 @@
 import 'package:asif/custom_animation.dart';
 import 'package:asif/custom_navifation.dart';
+import 'package:asif/internet_connection.dart';
 import 'package:flutter/material.dart';
 
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CustomNavigation(),
+      home: InternetConnectivityScreen(),
     );
   }
 
