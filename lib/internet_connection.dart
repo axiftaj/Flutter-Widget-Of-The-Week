@@ -33,7 +33,7 @@ class CheckInternetConnectionWidget extends StatelessWidget {
 
 
 class InternetConnectivityScreen extends StatelessWidget {
-   InternetConnectivityScreen({Key? key}) : super(key: key);
+  InternetConnectivityScreen({Key? key}) : super(key: key);
 
   List<Color> colors = [Colors.redAccent, Colors.purple , Colors.pinkAccent, Colors.black, Colors.teal, Colors.green, Colors.grey];
   Random random = Random();
@@ -60,14 +60,14 @@ class InternetConnectivityScreen extends StatelessWidget {
                       child: ListView.builder(
                           itemCount: 120,
                           itemBuilder: (context, index){
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Container(
-                            color: colors[random.nextInt(7)],
-                              height: 100,
-                              child: Center(child: Text(index.toString()))),
-                        );
-                      }),
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Container(
+                                  color: colors[random.nextInt(7)],
+                                  height: 100,
+                                  child: Center(child: Text(index.toString()))),
+                            );
+                          }),
                     )
                   ],
                 ),
