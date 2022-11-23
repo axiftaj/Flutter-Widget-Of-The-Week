@@ -1,435 +1,194 @@
 
-import 'package:flutter/foundation.dart';
+
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:html_editor_enhanced/html_editor.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:flutter_quill/flutter_quill.dart' hide Text;
+import 'package:tuple/tuple.dart';
 
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HtmlEditor extends StatefulWidget {
+  const HtmlEditor({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HtmlEditor> createState() => _HtmlEditorState();
 }
 
-class _HomePageState extends State<HomePage> {
+enum _SelectionType {
+  none,
+  word,
+  // line,
+}
 
 
-  String result = '';
-  final HtmlEditorController controller = HtmlEditorController(processNewLineAsBr: true , processOutputHtml: false);
+class _HtmlEditorState extends State<HtmlEditor> {
 
+  QuillController _controller = QuillController.basic();
+  final bodyFocusNode = FocusNode();
+  _SelectionType _selectionType = _SelectionType.none;
+  Timer? _selectAllTimer;
+  bool _onTripleClickSelection() {
+    final controller = _controller!;
+
+    _selectAllTimer?.cancel();
+    _selectAllTimer = null;
+
+    // If you want to select all text after paragraph, uncomment this line
+    // if (_selectionType == _SelectionType.line) {
+    //   final selection = TextSelection(
+    //     baseOffset: 0,
+    //     extentOffset: controller.document.length,
+    //   );
+
+    //   controller.updateSelection(selection, ChangeSource.REMOTE);
+
+    //   _selectionType = _SelectionType.none;
+
+    //   return true;
+    // }
+
+    if (controller.selection.isCollapsed) {
+      _selectionType = _SelectionType.none;
+    }
+
+    if (_selectionType == _SelectionType.none) {
+      _selectionType = _SelectionType.word;
+      _startTripleClickTimer();
+      return false;
+    }
+
+    if (_selectionType == _SelectionType.word) {
+      final child = controller.document.queryChild(
+        controller.selection.baseOffset,
+      );
+      final offset = child.node?.documentOffset ?? 0;
+      final length = child.node?.length ?? 0;
+
+      final selection = TextSelection(
+        baseOffset: offset,
+        extentOffset: offset + length,
+      );
+
+      controller.updateSelection(selection, ChangeSource.REMOTE);
+
+      // _selectionType = _SelectionType.line;
+
+      _selectionType = _SelectionType.none;
+
+      _startTripleClickTimer();
+
+      return true;
+    }
+
+    return false;
+  }
+
+  void _startTripleClickTimer() {
+    _selectAllTimer = Timer(const Duration(milliseconds: 900), () {
+      _selectionType = _SelectionType.none;
+    });
+  }
+   var length ;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
 
+    _controller.addListener(() {
+
+
+      setState(() {
+
+      });
+    }) ;
+
   }
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (!kIsWeb) {
-          controller.clearFocus();
-        }
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('sadf'),
-          elevation: 0,
-          actions: [
-            IconButton(
-                icon: Icon(Icons.refresh),
-                onPressed: () {
-                  if (kIsWeb) {
-                    controller.reloadWeb();
-                  } else {
-                    controller.editorController!.reload();
-                  }
-                })
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Text(length.toString()),
+            Text((_controller.plainTextEditingValue.text.length-1).toString()),
+            Text(_controller.selection.baseOffset.toString()),
+            Text(_controller.selection.extentOffset.toString()),
+            Text(_controller.selection.base.toString()),
+
+            Container(
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(8),
+                      topLeft: Radius.circular(8)
+                  )
+              ),
+              child: QuillToolbar.basic(controller: _controller ),
+            ),
+            Container(
+              height: 200,
+              decoration: const BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8)
+                  )
+
+              ),
+              child: Theme(
+                data: ThemeData.dark(),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.text,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15 , top: 15, bottom: 20),
+                    child: QuillEditor(
+                      controller: _controller!,
+                      scrollController: ScrollController(),
+                      scrollable: true,
+                      focusNode: bodyFocusNode,
+                      autoFocus: false,//
+                      readOnly: false,
+
+                      enableInteractiveSelection: true,
+                    //  placeholder: 'Enter text',
+                      enableSelectionToolbar: false,
+
+                      expands: false,
+                      padding: EdgeInsets.zero,
+                      onTapUp: (details, p1) {
+                        return _onTripleClickSelection();
+                      },
+
+                      customStyles: DefaultStyles(
+                        color: Colors.red,
+
+                        placeHolder: DefaultTextBlockStyle(
+                            Theme.of(context).textTheme.headline5!.copyWith(
+                                height: 0,
+                                fontSize: 16),
+                            const Tuple2(8, 0),
+                            const Tuple2(0, 0),
+                            null),
+                        bold: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold , height: 0),
+                        italic: const TextStyle(color: Colors.black,  height: 0 , fontStyle: FontStyle.italic),
+                        paragraph: DefaultTextBlockStyle(
+                            Theme.of(context).textTheme.headline5!.copyWith(
+                                height: 0,
+                                fontSize: 20, ),
+                            const Tuple2(8, 0),
+                            const Tuple2(0, 0),
+                            null),
+
+                      ),
+
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            controller.toggleCodeView();
-          },
-          child: Text(r'<\>', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(result.length.toString()),
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(7)
-                ),
-                child: HtmlEditor(
-                  controller: controller,
-                  htmlEditorOptions: const HtmlEditorOptions(
-                    hint: 'Your text here...',
-                   // initialText: "<p>text content initial, if any</p>",
-                  ),
-                  htmlToolbarOptions: HtmlToolbarOptions(
-                    defaultToolbarButtons: const [
-                      FontSettingButtons(fontName: false , fontSizeUnit: false),
-                      FontButtons(strikethrough: false, subscript: false , superscript: false),
-                      ListButtons(listStyles: false),
-                      StyleButtons(style: false),
-
-                    ],
-                    toolbarPosition: ToolbarPosition.belowEditor, //by default
-                    toolbarType: ToolbarType.nativeScrollable, //by default
-                    onButtonPressed: (ButtonType type, bool? status, Function? updateStatus) {
-                      print("button '${describeEnum(type)}' pressed, the current selected status is $status");
-                      return true;
-                    },
-                    onDropdownChanged: (DropdownType type, dynamic changed, Function(dynamic)? updateSelectedItem) {
-                      print("dropdown '${describeEnum(type)}' changed to $changed");
-                      return true;
-                    },
-
-                  ),
-                  otherOptions: OtherOptions(height: 200),
-                  callbacks: Callbacks(onBeforeCommand: (String? currentHtml) {
-                    result = currentHtml.toString() ;
-
-                    print('current html'+currentHtml!);
-                    setState(() {
-
-                    });
-                    print('html before change is $currentHtml');
-                  }, onChangeContent: (String? changed)async {
-
-                    print('content changed to $changed');
-
-                  }, onChangeCodeview: (String? changed) {
-                 //   print('code changed to $changed');
-                  }, onChangeSelection: (EditorSettings settings) {
-                  //  print('parent element is ${settings.parentElement}');
-                  //  print('font name is ${settings.fontName}');
-                  }, onDialogShown: () {
-                    print('dialog shown');
-                  }, onEnter: () {
-                    print('enter/return pressed');
-                  }, onFocus: () {
-                    print('editor focused');
-                  }, onBlur: () {
-                    print('editor unfocused');
-                  }, onBlurCodeview: () {
-                    print('codeview either focused or unfocused');
-                  }, onInit: () {
-                    print('init');
-                  },
-                      onKeyUp: (int? keyCode) {
-                       // print('$keyCode key released');
-                      }, onMouseDown: () {
-                        print('mouse downed');
-                      }, onMouseUp: () {
-                        print('mouse released');
-                      }, onNavigationRequestMobile: (String url) {
-                      //  print(url);
-                        return NavigationActionPolicy.ALLOW;
-                      }, onPaste: () {
-                        print('pasted into editor');
-                      }, onScroll: () {
-                        print('editor scrolled');
-                      }),
-                  plugins: [
-                    SummernoteAtMention(
-                        getSuggestionsMobile: (String value) {
-                          var mentions = <String>['test1', 'test2', 'test3'];
-                          return mentions
-                              .where((element) => element.contains(value))
-                              .toList();
-                        },
-                        mentionsWeb: ['test1', 'test2', 'test3'],
-                        onSelect: (String value) {
-                          print(value);
-                        }),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller.undo();
-                      },
-                      child:
-                      Text('Undo', style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller.clear();
-                      },
-                      child:
-                      Text('Reset', style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () async {
-                        var txt = await controller.getText();
-                        if (txt.contains('src=\"data:')) {
-                          txt =
-                          '<text removed due to base-64 data, displaying the text could cause the app to crash>';
-                        }
-                        setState(() {
-                          result = txt;
-                        });
-                      },
-                      child: Text(
-                        'Submit',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () {
-                        controller.redo();
-                      },
-                      child: Text(
-                        'Redo',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(result),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller.disable();
-                      },
-                      child: Text('Disable',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () async {
-                        controller.enable();
-                      },
-                      child: Text(
-                        'Enable',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () {
-                        controller.insertText('Google');
-                      },
-                      child: Text('Insert Text',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () {
-                        controller.insertHtml(
-                            '''<p style="color: blue">Google in blue</p>''');
-                      },
-                      child: Text('Insert HTML',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () async {
-                        controller.insertLink(
-                            'Google linked', 'https://google.com', true);
-                      },
-                      child: Text(
-                        'Insert Link',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () {
-                        controller.insertNetworkImage(
-                            'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png',
-                            filename: 'Google network image');
-                      },
-                      child: Text(
-                        'Insert network image',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller.addNotification(
-                            'Info notification', NotificationType.info);
-                      },
-                      child:
-                      Text('Info', style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller.addNotification(
-                            'Warning notification', NotificationType.warning);
-                      },
-                      child: Text('Warning',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () async {
-                        controller.addNotification(
-                            'Success notification', NotificationType.success);
-                      },
-                      child: Text(
-                        'Success',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () {
-                        controller.addNotification(
-                            'Danger notification', NotificationType.danger);
-                      },
-                      child: Text(
-                        'Danger',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller.addNotification('Plaintext notification',
-                            NotificationType.plaintext);
-                      },
-                      child: Text('Plaintext',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary),
-                      onPressed: () async {
-                        controller.removeNotification();
-                      },
-                      child: Text(
-                        'Remove',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-            ],
-          ),
         ),
       ),
     );
   }
-
-
 }
