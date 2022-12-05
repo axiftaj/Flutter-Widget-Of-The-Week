@@ -1,19 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const double _kItemExtent = 32.0;
 
-
-
-
-class CupertinoPickerExample extends StatefulWidget {
-  const CupertinoPickerExample({super.key});
+class CustomerHeightPicker extends StatefulWidget {
+  const CustomerHeightPicker({super.key});
 
   @override
-  State<CupertinoPickerExample> createState() => _CupertinoPickerExampleState();
+  State<CustomerHeightPicker> createState() => _CustomerHeightPickerState();
 }
 
-class _CupertinoPickerExampleState extends State<CupertinoPickerExample> {
+class _CustomerHeightPickerState extends State<CustomerHeightPicker> {
 
   int _inches = 0;
   int _feet = 0;
@@ -41,7 +37,7 @@ class _CupertinoPickerExampleState extends State<CupertinoPickerExample> {
       builder: (BuildContext context) {
 
         return AlertDialog(
-          title: const Text('AlertDialog Title'),
+          title: const Text('Height Picker'),
           content: SingleChildScrollView(
             child: ListBody(
               children:  <Widget>[
@@ -49,27 +45,38 @@ class _CupertinoPickerExampleState extends State<CupertinoPickerExample> {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: Colors.red
+                      color: Colors.transparent
                   ),
                   child: Row(
                     children: [
                       Expanded(
-                        child: CupertinoPicker(
-                          backgroundColor: Colors.white,
-                          itemExtent: 50,
-                          scrollController: FixedExtentScrollController(initialItem: _inches),
-                          children: List<Widget>.generate(_feetList.length, (int index) {
-                            return Center(
-                              child: Text(
-                                _feetList[index].toString(),
-                              ),
-                            );
-                          }),
-                          onSelectedItemChanged: (value) {
-                            setState(() {
-                              _feet = value;
-                            });
-                          },
+                        child: Theme(
+                          data: ThemeData.light().copyWith(
+                              primaryColor: Colors.transparent ,
+                              cardColor: Colors.transparent,
+                              backgroundColor: Colors.transparent ,
+                            dividerColor: Colors.transparent ,
+                            selectedRowColor:  Colors.transparent
+                          ),
+                          child: CupertinoPicker(
+                            useMagnifier: true,
+                            itemExtent: 40,
+                            // if you wan to remove background over lay color uncomment this
+                            //   selectionOverlay: CupertinoPickerDefaultSelectionOverlay(background: Colors.transparent,),
+                            scrollController: FixedExtentScrollController(initialItem: _inches),
+                            children: List<Widget>.generate(_feetList.length, (int index) {
+                              return Center(
+                                child: Text(
+                                  _feetList[index].toString(),
+                                ),
+                              );
+                            }),
+                            onSelectedItemChanged: (value) {
+                              setState(() {
+                                _feet = value;
+                              });
+                            },
+                          ),
                         ),
                       ),
                       Expanded(
@@ -101,7 +108,7 @@ class _CupertinoPickerExampleState extends State<CupertinoPickerExample> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Approve'),
+              child: const Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -133,7 +140,6 @@ class _CupertinoPickerExampleState extends State<CupertinoPickerExample> {
 
                ],
              ),
-
             Center(
               child: CupertinoButton(
                 padding: EdgeInsets.zero,
