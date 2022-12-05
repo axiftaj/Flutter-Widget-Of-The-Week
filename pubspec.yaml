@@ -42,6 +42,7 @@ dependencies:
   intl_phone_number_input: ^0.7.1
   reorderable_grid_view: ^2.2.5
   flutter_quill: ^6.1.6
+  awesome_number_picker: ^0.0.4
   page_transition:
   flutter_swipe_action_cell:
   carousel_slider:
