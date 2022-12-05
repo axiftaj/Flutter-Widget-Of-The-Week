@@ -1,3 +1,4 @@
+import 'package:asif/cupertinopickrapp.dart';
 import 'package:asif/custom_animation.dart';
 import 'package:asif/custom_navifation.dart';
 import 'package:asif/html_editor.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HeightPicker(),
+      home: CupertinoPickerExample(),
     );
   }
 
