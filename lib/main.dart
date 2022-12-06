@@ -1,11 +1,7 @@
-import 'package:asif/custom_height_picker.dart';
-import 'package:asif/custom_animation.dart';
-import 'package:asif/custom_navifation.dart';
-import 'package:asif/html_editor.dart';
-import 'package:asif/internet_connection.dart';
+import 'package:asif/dating_app/widgets/background_curve_widget.dart';
+import 'package:asif/dating_app/widgets/cards_stack_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'height_picker.dart';
 
 
 void main() {
@@ -26,7 +22,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CustomerHeightPicker(),
+      home: Stack(
+        children: [
+        //  BackgroudCurveWidget(),
+          CardsStackWidget()
+        ],
+      ),
     );
   }
 

@@ -45,6 +45,7 @@ dependencies:
   awesome_number_picker: ^0.0.4
   page_transition:
   flutter_swipe_action_cell:
+  provider:
   carousel_slider:
   syncfusion_flutter_sliders:
 
@@ -103,3 +104,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - assets/images/
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          style: italic
