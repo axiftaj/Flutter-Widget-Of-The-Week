@@ -129,14 +129,15 @@ class _CustomerHeightPickerState extends State<CustomerHeightPicker> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text('Selected fruit: '),
+            const Text('Initial Value: '),
+            SizedBox(height: 20,),
              Row(
                crossAxisAlignment: CrossAxisAlignment.center,
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
-                 Text( _feetList[_feet].toString()+"'"),
+                 Text( _feetList[_feet].toString()+"'" , style: TextStyle(fontSize: 40),),
                  SizedBox(width: 12,),
-                 Text( _inchesList[_inches].toString()+'"'),
+                 Text( _inchesList[_inches].toString()+'"' ,  style: TextStyle(fontSize: 40)),
 
                ],
              ),
