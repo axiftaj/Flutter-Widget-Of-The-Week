@@ -162,52 +162,6 @@ class _CardsStackWidgetState extends State<CardsStackWidget>
               ),
             ),
           ),
-          Positioned(
-            left: 0,
-            child: DragTarget<int>(
-              builder: (
-                BuildContext context,
-                List<dynamic> accepted,
-                List<dynamic> rejected,
-              ) {
-                return IgnorePointer(
-                  child: Container(
-                    height: 700.0,
-                    width: 80.0,
-                    color: Colors.transparent,
-                  ),
-                );
-              },
-              onAccept: (int index) {
-                setState(() {
-                  draggableItems.removeAt(index);
-                });
-              },
-            ),
-          ),
-          Positioned(
-            right: 0,
-            child: DragTarget<int>(
-              builder: (
-                BuildContext context,
-                List<dynamic> accepted,
-                List<dynamic> rejected,
-              ) {
-                return IgnorePointer(
-                  child: Container(
-                    height: 700.0,
-                    width: 80.0,
-                    color: Colors.transparent,
-                  ),
-                );
-              },
-              onAccept: (int index) {
-                setState(() {
-                  draggableItems.removeAt(index);
-                });
-              },
-            ),
-          ),
         ],
       ),
     );

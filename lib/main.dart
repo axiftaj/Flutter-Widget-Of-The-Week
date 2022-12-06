@@ -1,10 +1,12 @@
 import 'package:asif/dating_app/widgets/background_curve_widget.dart';
 import 'package:asif/dating_app/widgets/cards_stack_widget.dart';
+import 'package:asif/super_editor.dart';
 import 'package:flutter/material.dart';
 
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -22,12 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Stack(
-        children: [
-        //  BackgroudCurveWidget(),
-          CardsStackWidget()
-        ],
-      ),
+      home: SuperEditor(),
     );
   }
 

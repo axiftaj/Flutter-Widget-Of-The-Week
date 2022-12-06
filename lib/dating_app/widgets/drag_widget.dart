@@ -26,6 +26,7 @@ class DragWidget extends StatefulWidget {
 class _DragWidgetState extends State<DragWidget> {
   @override
   Widget build(BuildContext context) {
+    print(widget.swipeNotifier.value );
     return Center(
       child: Draggable<int>(
         // Data is the value this Draggable stores.
