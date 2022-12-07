@@ -17,6 +17,16 @@ class _SuperEditorState extends State<SuperEditor> {
   ZefyrController _controller = ZefyrController();
   final focusNode = FocusNode();
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _controller.addListener(() {
+     print( _controller.plainTextEditingValue.text.toString());
+    });
+  }
   @override
   void dispose() {
     // TODO: implement dispose
@@ -50,14 +60,15 @@ class _SuperEditorState extends State<SuperEditor> {
                         focusNode: focusNode,
                         padding: EdgeInsets.zero,
                         controller: _controller,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Asif Taj' ,
                         ),
-                        toolbar: ZefyrToolbar.basic(controller: _controller),
                       ),
                     ),
                   ),
-                  SizedBox(height: 100,),
+                  ZefyrToolbar.basic(controller: _controller),
+
+                  const SizedBox(height: 100,),
                   TextButton(onPressed: (){
 
                   }, child: Text('Next'))
