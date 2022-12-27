@@ -43,6 +43,7 @@ dependencies:
   super_editor:
   tuple: ^2.0.1
   intl_phone_number_input: ^0.7.1
+  get: ^4.6.5
   reorderable_grid_view: ^2.2.5
   flutter_quill:
   awesome_number_picker: ^0.0.4

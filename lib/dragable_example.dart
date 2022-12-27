@@ -67,80 +67,81 @@ class _DraggbaleExampleState extends State<DraggbaleExample> with TickerProvider
         title: Text('Grid'),
       ),
 
-      body: Column(
-        children: [
-          const SizedBox(height: 20,),
-          DragTarget(
-            builder: (context, candidateItems, rejectedItems) {
-              return Transform.scale(
-                scale: candidateItems.isNotEmpty ? 1.075 : 1.0,
-                child: Material(
-                  elevation: candidateItems.isNotEmpty ? 8.0 : 4.0,
-                  borderRadius: BorderRadius.circular(22.0),
-                  color: candidateItems.isEmpty ? const Color(0xFFF64209) : Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12.0,
-                      vertical: 12.0,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          width: 120,
-                          height: 120,
-                          child: Image(
-                            image: NetworkImage(image),
-                            fit: BoxFit.cover,
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 20,),
+            DragTarget(
+              builder: (context, candidateItems, rejectedItems) {
+                return Transform.scale(
+                  scale: candidateItems.isNotEmpty ? 1.075 : 1.0,
+                  child: Material(
+                    elevation: candidateItems.isNotEmpty ? 8.0 : 4.0,
+                    borderRadius: BorderRadius.circular(22.0),
+                    color: candidateItems.isEmpty ? const Color(0xFFF64209) : Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0,
+                        vertical: 12.0,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            height: 120,
+                            child: Image(
+                              image: NetworkImage(image),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8.0),
-                      ],
+                          const SizedBox(height: 8.0),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-            onWillAccept: (data) {
-              print('onWillAccept: $data');
-              setState(() {
+                );
+              },
+              onWillAccept: (data) {
+                print('onWillAccept: $data');
+                setState(() {
 
-              });
-              return true;
-            },
+                });
+                return true;
+              },
 
-          ),
-          const SizedBox(height: 20,),
-          Expanded(
-            child: GridView.builder(
+            ),
+            Expanded(
+              child: GridView.builder(
 
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                ),
-                itemCount: _items.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Draggable(
-                      data: _items,
-                      onDragEnd: (details) {
-                      },
-                      onDragStarted: (){
-                        image = _items[index].imageProvider ;
-                      },
-                      dragAnchorStrategy: pointerDragAnchorStrategy,
-                      feedback: DraggingListItem(
-                        dragKey: _draggableKey,
-                        photoProvider: _items[index].imageProvider,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                  ),
+                  itemCount: _items.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Draggable(
+                        data: _items,
+                        onDragEnd: (details) {
+                        },
+                        onDragStarted: (){
+                          image = _items[index].imageProvider ;
+                        },
+                        dragAnchorStrategy: pointerDragAnchorStrategy,
+                        feedback: DraggingListItem(
+                          dragKey: _draggableKey,
+                          photoProvider: _items[index].imageProvider,
+                        ),
+                        child: MenuListItem(
+                          photoProvider: _items[index].imageProvider,
+                        ),
                       ),
-                      child: MenuListItem(
-                        photoProvider: _items[index].imageProvider,
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ],
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }
