@@ -1,8 +1,10 @@
 
 
+import 'package:asif/provider/kam_par_ho.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class DumyScreen extends StatefulWidget {
   const DumyScreen({Key? key}) : super(key: key);
@@ -12,39 +14,38 @@ class DumyScreen extends StatefulWidget {
 }
 
 class _DumyScreenState extends State<DumyScreen> {
+
+
   @override
   Widget build(BuildContext context) {
+    print('build');
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Get.snackbar(
-            'a',
-            '',
-            messageText: Text('' , style: TextStyle(fontSize: 0, height: 0),),
-            titleText: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
+      appBar: AppBar(
+        title: Text('Ghareebo'),
+      ),
+      body: ChangeNotifierProvider(
+        create: (_) => KamParHo(),
+        builder: (context, child){
+         return Consumer<KamParHo>(
+             builder: (context, provider, child){
+               return   Column(
+                 children: [
+                   Container(
+                     height: 300,
+                     width: 200,
+                     color: Colors.red.withOpacity(provider.opacity),
+                   ),
+                   Slider(
+                       value: provider.opacity,
+                       onChanged: (value){
+                         provider.setOpacity(value);
 
-                children: [
-                  Expanded(child: Text('Click to copy the code' , style: TextStyle(color: Colors.white),)) ,
-                  GestureDetector(
-                      onTap: (){
-                        Clipboard.setData(ClipboardData(text: "21344"));
-                      },
-                      child: Text('Copy' , style:  TextStyle(color: Colors.white),)),
-                  SizedBox(width: 20,),
-                  GestureDetector(
-                      onTap: (){
-                        Get.back();
-                      },
-                      child: Icon(Icons.close, color: Colors.white,))
-                ],
-              ),
-            ),
-            duration: Duration(minutes: 2),
-            backgroundColor: Colors.black,
-            snackPosition: SnackPosition.BOTTOM
-          );
+                       }
+                   )
+                 ],
+               );
+             }
+         );
         },
       ),
     );
