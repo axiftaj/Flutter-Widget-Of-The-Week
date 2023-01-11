@@ -49,9 +49,9 @@ dependencies:
   awesome_number_picker: ^0.0.4
   page_transition:
   flutter_swipe_action_cell:
-  provider:
   carousel_slider:
   syncfusion_flutter_sliders:
+  provider: ^6.0.5
 
 
 dev_dependencies:

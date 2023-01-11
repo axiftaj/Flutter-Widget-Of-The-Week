@@ -1,9 +1,8 @@
 
+import 'dart:async';
 
-import 'package:asif/provider/kam_par_ho.dart';
+import 'package:asif/counter_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class DumyScreen extends StatefulWidget {
@@ -15,38 +14,56 @@ class DumyScreen extends StatefulWidget {
 
 class _DumyScreenState extends State<DumyScreen> {
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // Timer.periodic(Duration(seconds: 1), (timer) {
+    //   counter++;
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
     print('build');
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ghareebo'),
+        title: Text('Gajawa ka halwa'),
       ),
       body: ChangeNotifierProvider(
-        create: (_) => KamParHo(),
-        builder: (context, child){
-         return Consumer<KamParHo>(
-             builder: (context, provider, child){
-               return   Column(
-                 children: [
-                   Container(
-                     height: 300,
-                     width: 200,
-                     color: Colors.red.withOpacity(provider.opacity),
-                   ),
-                   Slider(
-                       value: provider.opacity,
-                       onChanged: (value){
-                         provider.setOpacity(value);
+        create: (_) => CounterProvider(),
+        child: Consumer<CounterProvider>(
+          builder: (context, provider, value){
+            return Column(
+              children: [
+                Center(
+                  child: Text(provider.counter.toString(), style: TextStyle(fontSize: 50),),
+                ),
+                Container(
+                  height: 200,
+                  width: 200,
+                  color: Colors.red.withOpacity(provider.opacity),
+                ),
+                Slider(value: provider.opacity, onChanged: (value){
 
-                       }
-                   )
-                 ],
-               );
-             }
-         );
-        },
+                  provider.setOpacity(value);
+                }),
+                TextButton(
+                    onPressed: (){
+                      provider.setCounter();
+                    }, child: Text('Increment'))
+              ],
+            );
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: (){
+
+            setState(() {
+
+            });
+          }
       ),
     );
   }
