@@ -1,5 +1,6 @@
 import 'package:asif/dating_app/widgets/background_curve_widget.dart';
 import 'package:asif/dating_app/widgets/cards_stack_widget.dart';
+import 'package:asif/sizebox_extension.dart';
 import 'package:asif/sticky_header_flutter.dart';
 import 'package:asif/super_editor.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StickyHeaderFlutter(),
+      home: SizeBoxExtensionWidget(),
     );
   }
 
