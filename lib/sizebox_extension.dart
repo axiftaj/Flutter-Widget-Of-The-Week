@@ -9,28 +9,22 @@ class SizeBoxExtensionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              height: 100,
-              width: double.infinity,
-              color: Colors.red,
-            ),
-            20.ph,
-            Container(
-              height: 100,
-              width: double.infinity,
-              color: Colors.red,
-            ),
-            20.ph,
-            SizedBox(height: 50,),
-            Container(
-              height: 100,
-              width: double.infinity,
-              color: Colors.red,
-            ),
-
+            const ContainerWidget(),
+            // This is size box extension which will return SizedBox(height: 100)
+            50.ph,
+            const ContainerWidget(),
+            50.ph,
+           Row(
+             children: [
+               const Expanded(child: ContainerWidget()),
+               100.pw,
+               const  Expanded(child:  ContainerWidget()),
+             ],
+           )
           ],
         ),
       ),
@@ -38,9 +32,23 @@ class SizeBoxExtensionWidget extends StatelessWidget {
   }
 }
 
+// creating extension for Size box on number to return double value
 extension Padding on num {
-
-  SizedBox get ph => SizedBox(height: toDouble(),) ;
-  SizedBox get pw => SizedBox(width: toDouble(),) ;
-
+  SizedBox get ph => SizedBox(height:toDouble() ,);
+  SizedBox get pw => SizedBox(width:toDouble() ,);
 }
+
+class ContainerWidget extends StatelessWidget {
+  const ContainerWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  Container(
+      height: 100,
+      width: double.infinity,
+      color: Colors.red,
+    );
+  }
+}
+
+
