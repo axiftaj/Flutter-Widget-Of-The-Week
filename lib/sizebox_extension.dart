@@ -33,7 +33,7 @@ class SizeBoxExtensionWidget extends StatelessWidget {
 }
 
 // creating extension for Size box on number to return double value
-extension Padding on num {
+extension PaddingHeight on num {
   SizedBox get ph => SizedBox(height:toDouble() ,);
   SizedBox get pw => SizedBox(width:toDouble() ,);
 }
