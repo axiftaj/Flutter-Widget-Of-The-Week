@@ -2,8 +2,11 @@
     package="com.example.asif">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-   <application
+
+    <application
         android:label="asif"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

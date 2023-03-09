@@ -26,6 +26,11 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/libphonenumber_plugin-0.2.5" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-8.1.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.3" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_app_badger-1.5.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_apple-2.2.5" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_android-4.1.7" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator-9.0.2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_web-2.1.6" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

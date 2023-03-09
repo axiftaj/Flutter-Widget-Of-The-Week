@@ -1,5 +1,6 @@
 import 'package:asif/dating_app/widgets/background_curve_widget.dart';
 import 'package:asif/dating_app/widgets/cards_stack_widget.dart';
+import 'package:asif/location_permission.dart';
 import 'package:asif/sizebox_extension.dart';
 import 'package:asif/sticky_header_flutter.dart';
 import 'package:asif/super_editor.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TestingScreen(),
+      home: LocationPermissionWidget(),
     );
   }
 
