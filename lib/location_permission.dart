@@ -79,7 +79,7 @@ class _LocationPermissionWidgetState extends State<LocationPermissionWidget> {
                     print('permission granted');
                   }
                 }else {
-                  Geolocator.openLocationSettings();
+                  Geolocator.openAppSettings();
                 }
               });
             },
