@@ -120,7 +120,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                       newDate =  isSameDate ? '' :  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
 
                     }else {
-                       newDate =  isSameDate ?  '' : groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString() ;
+                      newDate =  isSameDate ?  '' : groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString() ;
                     }
 
                     return Padding(
@@ -129,16 +129,16 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                         crossAxisAlignment: messageModel[index].isMe ?  CrossAxisAlignment.end  : CrossAxisAlignment.start,
                         children: [
                           if(newDate.isNotEmpty)
-                          Center(child:
-                          Container(
-                              decoration: BoxDecoration(
-                                color: Color(0xffE3D4EE),
-                                borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(newDate),
-                              ))),
+                            Center(child:
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: Color(0xffE3D4EE),
+                                    borderRadius: BorderRadius.circular(20)
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(newDate),
+                                ))),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: CustomPaint(
