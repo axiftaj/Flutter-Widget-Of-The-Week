@@ -39,6 +39,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
 
     final result = await FlutterImageCompress.compressAndGetFile(
       image!.path,
+      "sdfasdf",
       quality: 90,
     );
     print('after = ${result!.length}');
