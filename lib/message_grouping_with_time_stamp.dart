@@ -76,7 +76,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
     // TODO: implement initState
     super.initState();
 
-    // scrolling list to bottm
+    // scrolling list to bottom
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
@@ -102,7 +102,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
           shrinkWrap: true,
           children: [
             SizedBox(
-              height:  MediaQuery.of(context).size.height - 140,
+              height:  MediaQuery.of(context).size.height - 200,
               child: ListView.builder(
                   controller: _scrollController,
                   physics: const ClampingScrollPhysics(), // ← can't
@@ -175,46 +175,49 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                   }
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: 150,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: messageController,
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 8,
-                        minLines: 1,
-                        decoration: const InputDecoration(
-                            hintText: 'Enter Message...' ,
-                            fillColor: Colors.red ,
-                            contentPadding: EdgeInsets.zero,
-                            border: OutlineInputBorder(
-                            )
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  height: 60,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: messageController,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 8,
+                          minLines: 1,
+                          decoration: const InputDecoration(
+                              hintText: 'Enter Message...' ,
+                              fillColor: Colors.red ,
+                              contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                              border: OutlineInputBorder(
+                              )
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 10,),
-                    GestureDetector(
-                      onTap: (){
-                        messageModel.add(MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: messageController.text.toString() , isMe: true));
-                        messageController.clear();
-                        setState(() {});
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent,
-                          curve: Curves.easeOut,
-                          duration: const Duration(milliseconds: 500),
-                        );
-                      },
-                      child: const CircleAvatar(
-                        child: Icon(Icons.send),
-                      ),
-                    )
-                  ],
+                      const SizedBox(width: 10,),
+                      GestureDetector(
+                        onTap: (){
+                          messageModel.add(MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: messageController.text.toString() , isMe: true));
+                          messageController.clear();
+                          setState(() {});
+                          _scrollController.animateTo(
+                            _scrollController.position.maxScrollExtent,
+                            curve: Curves.easeOut,
+                            duration: const Duration(milliseconds: 500),
+                          );
+                        },
+                        child: const CircleAvatar(
+                          child: Icon(Icons.send),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             )
