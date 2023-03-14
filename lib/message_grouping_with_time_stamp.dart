@@ -1,6 +1,7 @@
 
 
 import 'dart:ui';
+import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -20,43 +21,47 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
 
   List<MessageModel> messageModel = [
 
-    MessageModel(timeStamp: DateTime(2023,03,11, 15,20 ).microsecondsSinceEpoch  , message: 'Saturday Message' , isMe: true),
-    MessageModel(timeStamp: DateTime(2023,03,00, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message' ,  isMe: false),
-    MessageModel(timeStamp: DateTime(2023,02,03, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
-    MessageModel(timeStamp: DateTime(2023,01,04, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
-    MessageModel(timeStamp: DateTime(2023,01,04, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message', isMe: true),
-    MessageModel(timeStamp: DateTime(2023,01,04, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
-    MessageModel(timeStamp: DateTime(2023,01,04, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message', isMe: true),
-    MessageModel(timeStamp: DateTime(2023,01,04, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
-    MessageModel(timeStamp: DateTime(2023,01,04, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message', isMe: true),
-    MessageModel(timeStamp: DateTime(2023,01,01, 15,20 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
-    MessageModel(timeStamp: DateTime(2023,03,12, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message', isMe: true),
-    MessageModel(timeStamp: DateTime(2023,03,12, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: false),
-    MessageModel(timeStamp: DateTime(2023,03,12, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message', isMe: true),
-    MessageModel(timeStamp: DateTime(2023,03,12, 14,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: false),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
+    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: false),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
+    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: false),
+
+
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message', isMe: true),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: false),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message', isMe: true),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: false),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: true),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: false),
+
+
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
+
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
+    MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
+
+
+    MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: true),
+    MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: false),
+    MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: true),
+    MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: false),
+    MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: true),
+
+
+    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: true),
+    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: false),
+    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: true),
+    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: false),
+    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: true),
+    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: false),
 
   ];
 
@@ -75,18 +80,8 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    // scrolling list to bottom
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          curve: Curves.easeOut,
-          duration: const Duration(milliseconds: 500),
-        );
-      }
-    });
   }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
@@ -98,29 +93,35 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
         title: const Text('Message Group Time Stamp'),
       ),
       body: SafeArea(
-        child: ListView(
-          shrinkWrap: true,
+        child: Column(
           children: [
-            SizedBox(
-              height:  MediaQuery.of(context).size.height - 200,
+            Expanded(
               child: ListView.builder(
                   controller: _scrollController,
+                  reverse: true,
+                  shrinkWrap: true,
                   physics: const ClampingScrollPhysics(), // ← can't
                   itemCount: messageModel.reversed.length,
                   itemBuilder: (context, index){
 
-                    final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
 
                     bool isSameDate = false;
                     String? newDate = '';
 
-                    if(index >  0){
-                      final DateTime prevDate = returnDateAndTimeFormat(messageModel[index-1].timeStamp.toString());
-                      isSameDate = date.isAtSameMomentAs(prevDate);
-                      newDate =  isSameDate ? '' :  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
+                    final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
 
+
+                    if(index == 0  && messageModel.length ==  1){
+                      newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
+                    }else if(index == messageModel.length-1){
+                      newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
                     }else {
-                      newDate =  isSameDate ?  '' : groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString() ;
+                      final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
+                      final DateTime prevDate = returnDateAndTimeFormat(messageModel[index+1].timeStamp.toString());
+                      isSameDate = date.isAtSameMomentAs(prevDate);
+
+                      print(date.toString() +" "+prevDate.toString()+" "+isSameDate.toString());
+                      newDate =  isSameDate ?  '' : groupMessageDateAndTime(messageModel[index-1].timeStamp.toString()).toString() ;
                     }
 
                     return Padding(
@@ -139,33 +140,38 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(newDate),
                                 ))),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            child: CustomPaint(
-                              painter: SpecialChatBubbleThree(
-                                  color: messageModel[index].isMe?  const Color(0xffE3D4EE) :  const Color(0xffDAF0F3),
-                                  alignment: messageModel[index].isMe ? Alignment.topRight : Alignment.topLeft,
-                                  tail: true
+                          CustomPaint(
+                            painter: SpecialChatBubbleThree(
+                                color: messageModel[index].isMe?  const Color(0xffE3D4EE) :  const Color(0xffDAF0F3),
+                                alignment: messageModel[index].isMe ? Alignment.topRight : Alignment.topLeft,
+                                tail: true
+                            ),
+                            child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: MediaQuery.of(context).size.width * .7,
                               ),
-                              child: Container(
-                                constraints: BoxConstraints(
-                                  maxWidth: MediaQuery.of(context).size.width * .7,
-                                ),
-                                margin:messageModel[index].isMe ? const EdgeInsets.fromLTRB(7, 7, 17, 7) : const EdgeInsets.fromLTRB(17, 7, 7, 7),
+                              margin:messageModel[index].isMe ? const EdgeInsets.fromLTRB(7, 7, 17, 7) : const EdgeInsets.fromLTRB(17, 7, 7, 7),
 
-                                child: Padding(
-                                  padding: messageModel[index].isMe
-                                      ? const EdgeInsets.only(left: 4, right: 4)
-                                      : const EdgeInsets.only(left: 4, right: 4),
-                                  child: Text(
-                                    messageModel[index].message  ,
-                                    textAlign: TextAlign.left,
-                                    style: Theme.of(context).textTheme.headline5!.copyWith(
-                                        fontSize: 15 ,
-                                        color: messageModel[index].isMe ? const Color(0xff705982) : const Color(0xff677D81)
+                              child: Stack(
+                                children: [
+                                  Padding(
+                                    padding: messageModel[index].isMe
+                                        ? const EdgeInsets.only(left: 4, right: 4, bottom: 10)
+                                        : const EdgeInsets.only(left: 4, right: 4 ,bottom: 10),
+                                    child: Text(
+                                      messageModel[index].message  ,
+                                      textAlign: TextAlign.left,
+                                      style: Theme.of(context).textTheme.headline5!.copyWith(
+                                          fontSize: 15 ,
+                                          color: messageModel[index].isMe ? const Color(0xff705982) : const Color(0xff677D81)
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  Positioned(
+                                      bottom: 0,
+                                      right: 0,
+                                      child: Text(messageTime(messageModel[index].timeStamp.toString()).toString() ,textAlign: TextAlign.left, style: TextStyle(fontSize: 10),))
+                                ],
                               ),
                             ),
                           ),
@@ -207,7 +213,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                           messageController.clear();
                           setState(() {});
                           _scrollController.animateTo(
-                            _scrollController.position.maxScrollExtent,
+                            _scrollController.position.minScrollExtent,
                             curve: Curves.easeOut,
                             duration: const Duration(milliseconds: 500),
                           );
@@ -255,17 +261,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
     } else if(aDate == yesterday) {
       difference = "Yesterday" ;
     }
-    else if(todayDate.difference(dt).inDays >= 2 && todayDate.difference(dt).inDays < 3  ){
-      difference =DateFormat('EEEE').format(dt).toString() ;
-    } else if(todayDate.difference(dt).inDays >= 3 && todayDate.difference(dt).inDays < 4  ){
-      difference =DateFormat('EEEE').format(dt).toString() ;
-    } else if(todayDate.difference(dt).inDays >= 4 && todayDate.difference(dt).inDays < 5  ){
-      difference =DateFormat('EEEE').format(dt).toString() ;
-    } else if(todayDate.difference(dt).inDays >= 5 && todayDate.difference(dt).inDays < 6  ){
-      difference =DateFormat('EEEE').format(dt).toString() ;
-    } else if(todayDate.difference(dt).inDays >= 6 && todayDate.difference(dt).inDays < 7  ){
-      difference =DateFormat('EEEE').format(dt).toString() ;
-    } else {
+    else {
       difference = DateFormat.yMMMd().format(dt).toString() ;
     }
 
