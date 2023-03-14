@@ -1,7 +1,4 @@
-
-
 import 'dart:ui';
-import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -15,20 +12,24 @@ class MessageGroupingWithTimeStamp extends StatefulWidget {
 class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeStamp> {
 
 
+  //message controller
   final messageController = TextEditingController();
+
+  //scroll controller
   ScrollController _scrollController = new ScrollController();
 
 
   List<MessageModel> messageModel = [
 
-    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
+    //adding data into model for todays date
+    MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message and testing long thread for this i hope this will work', isMe: true),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: false),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: false),
 
-
+    //adding data into model for yesterday date
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message', isMe: true),
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: false),
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message', isMe: true),
@@ -36,7 +37,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: true),
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 ).microsecondsSinceEpoch  , message: 'Yesterday Message',  isMe: false),
 
-
+    //adding data into model date
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: false),
     MessageModel(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 ).microsecondsSinceEpoch  , message: 'Some Message',  isMe: true),
@@ -68,24 +69,51 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
 
   // function to convert time stamp to date
   static DateTime returnDateAndTimeFormat(String time){
-
     var dt = DateTime.fromMicrosecondsSinceEpoch(int.parse(time.toString()));
     var originalDate = DateFormat('MM/dd/yyyy').format(dt);
     return DateTime(dt.year, dt.month , dt.day);
 
   }
 
+  //function to return message time in 24 hours format
+  static String messageTime(String time){
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+    var dt = DateTime.fromMicrosecondsSinceEpoch(int.parse(time.toString()));
+    String difference = '';
+    difference = DateFormat('jm').format(dt).toString() ;
+    return difference ;
   }
+
+  // function to return date if date changes based on your local date and time
+  static String groupMessageDateAndTime(String time){
+
+    var dt = DateTime.fromMicrosecondsSinceEpoch(int.parse(time.toString()));
+    var originalDate = DateFormat('MM/dd/yyyy').format(dt);
+
+    final todayDate = DateTime.now();
+
+    final today = DateTime(todayDate.year, todayDate.month, todayDate.day);
+    final yesterday = DateTime(todayDate.year, todayDate.month, todayDate.day - 1);
+    String difference = '';
+    final aDate = DateTime(dt.year, dt.month, dt.day);
+
+
+    if(aDate == today) {
+      difference = "Today" ;
+    } else if(aDate == yesterday) {
+      difference = "Yesterday" ;
+    }
+    else {
+      difference = DateFormat.yMMMd().format(dt).toString() ;
+    }
+
+    return difference ;
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height * 1;
-    final width = MediaQuery.of(context).size.width * 1;
 
     return  Scaffold(
       resizeToAvoidBottomInset: true,
@@ -94,91 +122,99 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
       ),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: ListView.builder(
-                  controller: _scrollController,
-                  reverse: true,
-                  shrinkWrap: true,
-                  physics: const ClampingScrollPhysics(), // ← can't
-                  itemCount: messageModel.reversed.length,
-                  itemBuilder: (context, index){
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: ListView.builder(
+                    controller: _scrollController,
+                    reverse: true,
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(), // ← can't
+                    itemCount: messageModel.reversed.length,
+                    itemBuilder: (context, index){
 
 
-                    bool isSameDate = false;
-                    String? newDate = '';
+                      bool isSameDate = false;
+                      String? newDate = '';
 
-                    final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
-
-
-                    if(index == 0  && messageModel.length ==  1){
-                      newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
-                    }else if(index == messageModel.length-1){
-                      newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
-                    }else {
                       final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
-                      final DateTime prevDate = returnDateAndTimeFormat(messageModel[index+1].timeStamp.toString());
-                      isSameDate = date.isAtSameMomentAs(prevDate);
 
-                      print(date.toString() +" "+prevDate.toString()+" "+isSameDate.toString());
-                      newDate =  isSameDate ?  '' : groupMessageDateAndTime(messageModel[index-1].timeStamp.toString()).toString() ;
-                    }
 
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Column(
-                        crossAxisAlignment: messageModel[index].isMe ?  CrossAxisAlignment.end  : CrossAxisAlignment.start,
-                        children: [
-                          if(newDate.isNotEmpty)
-                            Center(child:
-                            Container(
-                                decoration: BoxDecoration(
-                                    color: Color(0xffE3D4EE),
-                                    borderRadius: BorderRadius.circular(20)
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(newDate),
-                                ))),
-                          CustomPaint(
-                            painter: SpecialChatBubbleThree(
-                                color: messageModel[index].isMe?  const Color(0xffE3D4EE) :  const Color(0xffDAF0F3),
-                                alignment: messageModel[index].isMe ? Alignment.topRight : Alignment.topLeft,
-                                tail: true
-                            ),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: MediaQuery.of(context).size.width * .7,
-                              ),
-                              margin:messageModel[index].isMe ? const EdgeInsets.fromLTRB(7, 7, 17, 7) : const EdgeInsets.fromLTRB(17, 7, 7, 7),
+                      if(index == 0  && messageModel.length ==  1){
+                        newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
+                      }else if(index == messageModel.length-1){
+                        newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
+                      }else {
+                        final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
+                        final DateTime prevDate = returnDateAndTimeFormat(messageModel[index+1].timeStamp.toString());
+                        isSameDate = date.isAtSameMomentAs(prevDate);
 
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: messageModel[index].isMe
-                                        ? const EdgeInsets.only(left: 4, right: 4, bottom: 10)
-                                        : const EdgeInsets.only(left: 4, right: 4 ,bottom: 10),
-                                    child: Text(
-                                      messageModel[index].message  ,
-                                      textAlign: TextAlign.left,
-                                      style: Theme.of(context).textTheme.headline5!.copyWith(
-                                          fontSize: 15 ,
-                                          color: messageModel[index].isMe ? const Color(0xff705982) : const Color(0xff677D81)
-                                      ),
-                                    ),
+                        print(date.toString() +" "+prevDate.toString()+" "+isSameDate.toString());
+                        newDate =  isSameDate ?  '' : groupMessageDateAndTime(messageModel[index-1].timeStamp.toString()).toString() ;
+                      }
+
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Column(
+                          crossAxisAlignment: messageModel[index].isMe ?  CrossAxisAlignment.end  : CrossAxisAlignment.start,
+                          children: [
+                            if(newDate.isNotEmpty)
+                              Center(child:
+                              Container(
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffE3D4EE),
+                                      borderRadius: BorderRadius.circular(20)
                                   ),
-                                  Positioned(
-                                      bottom: 0,
-                                      right: 0,
-                                      child: Text(messageTime(messageModel[index].timeStamp.toString()).toString() ,textAlign: TextAlign.left, style: TextStyle(fontSize: 10),))
-                                ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(newDate),
+                                  ))),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              child: CustomPaint(
+                                painter: MessageBubble(
+                                    color: messageModel[index].isMe?  const Color(0xffE3D4EE) :  const Color(0xffDAF0F3),
+                                    alignment: messageModel[index].isMe ? Alignment.topRight : Alignment.topLeft,
+                                    tail: true
+                                ),
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                    maxWidth: MediaQuery.of(context).size.width * .7,
+                                  ),
+                                  margin:messageModel[index].isMe ? const EdgeInsets.fromLTRB(7, 7, 17, 7) : const EdgeInsets.fromLTRB(17, 7, 7, 7),
+
+                                  child: Stack(
+                                    children: [
+                                      Padding(
+                                        padding: messageModel[index].isMe
+                                            ? const EdgeInsets.only(left: 4, right: 4, bottom: 10)
+                                            : const EdgeInsets.only(left: 4, right: 4 ,bottom: 10),
+                                        child: Text(
+                                          messageModel[index].message  ,
+                                          textAlign: TextAlign.left,
+                                          style: Theme.of(context).textTheme.headline5!.copyWith(
+                                              fontSize: 15 ,
+                                              color: messageModel[index].isMe ? const Color(0xff705982) : const Color(0xff677D81)
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                          bottom: 0,
+                                          right: 0,
+                                          child: Text(messageTime(messageModel[index].timeStamp.toString()).toString() ,textAlign: TextAlign.left, style: TextStyle(fontSize: 10),))
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
+                          ],
+                        ),
+                      );
+                    }
+                ),
               ),
             ),
             Padding(
@@ -235,45 +271,14 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
   }
 
 
-  static String messageTime(String time){
-
-    var dt = DateTime.fromMicrosecondsSinceEpoch(int.parse(time.toString()));
-    String difference = '';
-    difference = DateFormat('jm').format(dt).toString() ;
-    return difference ;
-  }
-
-  static String groupMessageDateAndTime(String time){
-
-    var dt = DateTime.fromMicrosecondsSinceEpoch(int.parse(time.toString()));
-    var originalDate = DateFormat('MM/dd/yyyy').format(dt);
-
-    final todayDate = DateTime.now();
-
-    final today = DateTime(todayDate.year, todayDate.month, todayDate.day);
-    final yesterday = DateTime(todayDate.year, todayDate.month, todayDate.day - 1);
-    String difference = '';
-    final aDate = DateTime(dt.year, dt.month, dt.day);
 
 
-    if(aDate == today) {
-      difference = "Today" ;
-    } else if(aDate == yesterday) {
-      difference = "Yesterday" ;
-    }
-    else {
-      difference = DateFormat.yMMMd().format(dt).toString() ;
-    }
-
-    return difference ;
-
-  }
 
 }
 
 
 
-
+// model for messages
 class MessageModel {
   int timeStamp ;
   String message ;
@@ -282,12 +287,13 @@ class MessageModel {
 }
 
 
-class SpecialChatBubbleThree extends CustomPainter {
+// creating bubble
+class MessageBubble extends CustomPainter {
   final Color color;
   final Alignment alignment;
   final bool tail;
 
-  SpecialChatBubbleThree({
+  MessageBubble({
     required this.color,
     required this.alignment,
     required this.tail,

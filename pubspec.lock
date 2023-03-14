@@ -65,14 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
-  chat_bubbles:
-    dependency: "direct main"
-    description:
-      name: chat_bubbles
-      sha256: "63703c22ba2e1938e17a396d0e1fdd368f935795c2d7779133a9dae786a3311a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.0"
   circle_flags:
     dependency: transitive
     description:
