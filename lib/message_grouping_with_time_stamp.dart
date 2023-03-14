@@ -245,7 +245,9 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                       const SizedBox(width: 10,),
                       GestureDetector(
                         onTap: (){
-                          messageModel.add(MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: messageController.text.toString() , isMe: true));
+                          MessageModel model = MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: messageController.text.toString() , isMe: true);
+                          // since we are reversing the list so we are inserting date at 0 index to append the list
+                          messageModel.insert(0 ,model);
                           messageController.clear();
                           setState(() {});
                           _scrollController.animateTo(
