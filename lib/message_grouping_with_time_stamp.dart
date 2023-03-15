@@ -19,9 +19,9 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
   ScrollController _scrollController = new ScrollController();
 
 
-  List<MessageModel> messageModel = [
+  List<MessageModel> messagesList = [
 
-    //adding data into model for todays date
+    //adding data into model for Today date
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message and testing long thread for this i hope this will work', isMe: true),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message',  isMe: false),
     MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: 'Hello Today Message', isMe: true),
@@ -53,12 +53,6 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
     MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: true),
     MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: false),
     MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: true),
-    MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: false),
-    MessageModel(timeStamp: DateTime(2023,02,08, 15,20 ).microsecondsSinceEpoch  , message: 'Feb 8th Message' , isMe: true),
-
-
-    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: true),
-    MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: false),
     MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: true),
     MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: false),
     MessageModel(timeStamp: DateTime(2023,01,20, 15,20 ).microsecondsSinceEpoch  , message: '20 JanMessage' , isMe: true),
@@ -75,7 +69,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
 
   }
 
-  //function to return message time in 24 hours format
+  //function to return message time in 24 hours format AM/PM
   static String messageTime(String time){
 
     var dt = DateTime.fromMicrosecondsSinceEpoch(int.parse(time.toString()));
@@ -111,7 +105,6 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
 
   }
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -133,33 +126,34 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                     reverse: true,
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(), // ← can't
-                    itemCount: messageModel.reversed.length,
+                    itemCount: messagesList.length,
                     itemBuilder: (context, index){
 
 
                       bool isSameDate = false;
                       String? newDate = '';
 
-                      final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
+                      final DateTime date = returnDateAndTimeFormat(messagesList[index].timeStamp.toString());
 
 
-                      if(index == 0  && messageModel.length ==  1){
-                        newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
-                      }else if(index == messageModel.length-1){
-                        newDate =  groupMessageDateAndTime(messageModel[index].timeStamp.toString()).toString();
+                      if(index == 0  && messagesList.length ==  1){
+                        newDate =  groupMessageDateAndTime(messagesList[index].timeStamp.toString()).toString();
+                      }else if(index == messagesList.length-1){
+                        newDate =  groupMessageDateAndTime(messagesList[index].timeStamp.toString()).toString();
                       }else {
-                        final DateTime date = returnDateAndTimeFormat(messageModel[index].timeStamp.toString());
-                        final DateTime prevDate = returnDateAndTimeFormat(messageModel[index+1].timeStamp.toString());
+
+                        final DateTime date = returnDateAndTimeFormat(messagesList[index].timeStamp.toString());
+                        final DateTime prevDate = returnDateAndTimeFormat(messagesList[index+1].timeStamp.toString());
                         isSameDate = date.isAtSameMomentAs(prevDate);
 
-                        print(date.toString() +" "+prevDate.toString()+" "+isSameDate.toString());
-                        newDate =  isSameDate ?  '' : groupMessageDateAndTime(messageModel[index-1].timeStamp.toString()).toString() ;
+                        print("$date $prevDate $isSameDate");
+                        newDate =  isSameDate ?  '' : groupMessageDateAndTime(messagesList[index-1].timeStamp.toString()).toString() ;
                       }
 
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: Column(
-                          crossAxisAlignment: messageModel[index].isMe ?  CrossAxisAlignment.end  : CrossAxisAlignment.start,
+                          crossAxisAlignment: messagesList[index].isMe ?  CrossAxisAlignment.end  : CrossAxisAlignment.start,
                           children: [
                             if(newDate.isNotEmpty)
                               Center(child:
@@ -176,35 +170,35 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                               padding: const EdgeInsets.symmetric(vertical: 4),
                               child: CustomPaint(
                                 painter: MessageBubble(
-                                    color: messageModel[index].isMe?  const Color(0xffE3D4EE) :  const Color(0xffDAF0F3),
-                                    alignment: messageModel[index].isMe ? Alignment.topRight : Alignment.topLeft,
+                                    color: messagesList[index].isMe?  const Color(0xffE3D4EE) :  const Color(0xffDAF0F3),
+                                    alignment: messagesList[index].isMe ? Alignment.topRight : Alignment.topLeft,
                                     tail: true
                                 ),
                                 child: Container(
                                   constraints: BoxConstraints(
                                     maxWidth: MediaQuery.of(context).size.width * .7,
                                   ),
-                                  margin:messageModel[index].isMe ? const EdgeInsets.fromLTRB(7, 7, 17, 7) : const EdgeInsets.fromLTRB(17, 7, 7, 7),
+                                  margin:messagesList[index].isMe ? const EdgeInsets.fromLTRB(7, 7, 17, 7) : const EdgeInsets.fromLTRB(17, 7, 7, 7),
 
                                   child: Stack(
                                     children: [
                                       Padding(
-                                        padding: messageModel[index].isMe
+                                        padding: messagesList[index].isMe
                                             ? const EdgeInsets.only(left: 4, right: 4, bottom: 10)
                                             : const EdgeInsets.only(left: 4, right: 4 ,bottom: 10),
                                         child: Text(
-                                          messageModel[index].message  ,
+                                          messagesList[index].message  ,
                                           textAlign: TextAlign.left,
                                           style: Theme.of(context).textTheme.headline5!.copyWith(
                                               fontSize: 15 ,
-                                              color: messageModel[index].isMe ? const Color(0xff705982) : const Color(0xff677D81)
+                                              color: messagesList[index].isMe ? const Color(0xff705982) : const Color(0xff677D81)
                                           ),
                                         ),
                                       ),
                                       Positioned(
                                           bottom: 0,
                                           right: 0,
-                                          child: Text(messageTime(messageModel[index].timeStamp.toString()).toString() ,textAlign: TextAlign.left, style: TextStyle(fontSize: 10),))
+                                          child: Text(messageTime(messagesList[index].timeStamp.toString()).toString() ,textAlign: TextAlign.left, style: TextStyle(fontSize: 10),))
                                     ],
                                   ),
                                 ),
@@ -247,7 +241,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                         onTap: (){
                           MessageModel model = MessageModel(timeStamp: DateTime.now().microsecondsSinceEpoch  , message: messageController.text.toString() , isMe: true);
                           // since we are reversing the list so we are inserting date at 0 index to append the list
-                          messageModel.insert(0 ,model);
+                          messagesList.insert(0 ,model);
                           messageController.clear();
                           setState(() {});
                           _scrollController.animateTo(
