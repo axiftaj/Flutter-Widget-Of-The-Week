@@ -22,13 +22,15 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
   // method to pick single image while replacing the photo
   Future imagePickerFromCamera ()async{
 
+
     image = (await picker.pickImage(source: ImageSource.camera))!;
     final bytes = await image!.readAsBytes();
 
+    //image size before compression in mb
     //converting image size to
-    // final kb = bytes.length / 1024;
-    // final mb = kb / 1024;
-
+    final kb = bytes.length / 1024;
+     final mb = kb / 1024;
+    print(mb);
 
     final dir = await path_provider.getTemporaryDirectory();
     final targetPath = dir.absolute.path + '/temp.jpg';
@@ -43,9 +45,10 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     );
 
 
+    //image size after compression in mb
     final newKb = result!.readAsBytesSync().length / 1024;
     final newMb = newKb / 1024;
-
+    print(newMb);
     newImage = result;
 
     setState(() {});

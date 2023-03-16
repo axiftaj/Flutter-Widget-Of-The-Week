@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'animated_list_view_builder_widget.dart';
 import 'image_compressor_widget.dart';
 
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ImageCompressorWidget(),
+      home: AnimatedListViewBuilderWidget(),
     );
   }
 
