@@ -25,8 +25,9 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     image = (await picker.pickImage(source: ImageSource.camera))!;
     final bytes = await image!.readAsBytes();
 
-    final kb = bytes.length / 1024;
-    final mb = kb / 1024;
+    //converting image size to
+    // final kb = bytes.length / 1024;
+    // final mb = kb / 1024;
 
 
     final dir = await path_provider.getTemporaryDirectory();
@@ -44,7 +45,6 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
 
     final newKb = result!.readAsBytesSync().length / 1024;
     final newMb = newKb / 1024;
-    print(newMb);
 
     newImage = result;
 
@@ -72,7 +72,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
             ),
             TextButton(onPressed: (){
               
-            }, child: Text('Compress'))
+            }, child: const Text('Compress'))
 
           ],
         ),
