@@ -1,7 +1,7 @@
 
 
 import 'dart:io';
-
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,7 +20,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
   final picker = ImagePicker();
 
   // method to pick single image while replacing the photo
-  Future replacePhotoPickImage ()async{
+  Future imagePickerFromCamera ()async{
 
     image = (await picker.pickImage(source: ImageSource.camera))!;
     final bytes = await image!.readAsBytes();
@@ -28,29 +28,26 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     final kb = bytes.length / 1024;
     final mb = kb / 1024;
 
-    print(mb);
 
-    // final result = await FlutterImageCompress.compressAndGetFile(
-    //     image!.path,
-    //   image!.path.toString()+"tem/jpg",
-    //   quality: 80,
-    //   rotate: 180,
-    // );
+    final dir = await path_provider.getTemporaryDirectory();
+    final targetPath = dir.absolute.path + '/temp.jpg';
+
 
     final result = await FlutterImageCompress.compressAndGetFile(
       image!.path,
-      "sdfasdf",
-      quality: 90,
+      targetPath,
+      minHeight: 1080, //you can play with this to reduce siz
+      minWidth: 1080,
+      quality: 90, // keep this high to get the original qualit if image
     );
-    print('after = ${result!.length}');
 
-    // final newKb = result.lengthInBytes / 1024;
-    // final newMb = newKb / 1024;
-    // print(newMb);
-    //
-    // newImage = File(path).writeAsBytes(bytes);
 
-   // newImage = File(image!.path);
+    final newKb = result!.readAsBytesSync().length / 1024;
+    final newMb = newKb / 1024;
+    print(newMb);
+
+    newImage = result;
+
     setState(() {});
 
   }
@@ -60,7 +57,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     return  Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          replacePhotoPickImage ();
+          imagePickerFromCamera ();
         },
       ),
       body: SafeArea(
@@ -68,10 +65,9 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
           children: [
             if(image != null )
             SizedBox(
-              height: 200,
               child: Image.file(
                 File(newImage!.path),
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
               ),
             ),
             TextButton(onPressed: (){

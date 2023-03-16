@@ -1,9 +1,7 @@
-import 'package:asif/location_permission.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'image_compressor_widget.dart';
-import 'message_grouping_with_time_stamp.dart';
+
 
 
 void main() {
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MessageGroupingWithTimeStamp(),
+      home: ImageCompressorWidget(),
     );
   }
 
