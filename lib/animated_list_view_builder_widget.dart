@@ -28,7 +28,7 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
                 0, (_, animation) => sizeIt(context, 0, animation),
                 duration: const Duration(milliseconds: 500));
             _items.removeAt(0);
-          }, icon: Icon(Icons.remove_circle_outline))
+          }, icon:  Icon(Icons.remove_circle_outline))
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -46,7 +46,6 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
           initialItemCount: _items.length,
           itemBuilder: (context, index, animation){
             return sizeIt(context, index, animation);
-
           },
         ),
       ),
