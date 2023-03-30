@@ -230,14 +230,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_app_badger:
-    dependency: "direct main"
-    description:
-      name: flutter_app_badger
-      sha256: "64d4a279bab862ed28850431b9b446b9820aaae0bf363322d51077419f930fa8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.5.0"
   flutter_colorpicker:
     dependency: transitive
     description:
@@ -331,14 +323,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.4.2"
-  flutter_sticky_header:
-    dependency: "direct main"
-    description:
-      name: flutter_sticky_header
-      sha256: "017f398fbb45a589e01491861ca20eb6570a763fd9f3888165a978e11248c709"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.5"
   flutter_svg:
     dependency: transitive
     description:
@@ -533,14 +517,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
-  keep_keyboard_popup_menu:
-    dependency: "direct main"
-    description:
-      name: keep_keyboard_popup_menu
-      sha256: e954d1dc96ee58c5f4d62f76cdfb38c67cead3df65640b4477247d3de8599572
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
   libphonenumber_platform_interface:
     dependency: transitive
     description:
@@ -621,14 +597,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  page_transition:
-    dependency: "direct main"
-    description:
-      name: page_transition
-      sha256: a7694bc120b7064a7f57c336914bb8885acf4f70bb3772c30c2fcfe6a85e43ff
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.9"
   pasteboard:
     dependency: transitive
     description:
@@ -1026,14 +994,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.4"
-  value_layout_builder:
-    dependency: transitive
-    description:
-      name: value_layout_builder
-      sha256: "98202ec1807e94ac72725b7f0d15027afde513c55c69ff3f41bcfccb950831bc"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.1"
   vector_graphics:
     dependency: transitive
     description:

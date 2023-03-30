@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'animated_list_view_builder_widget.dart';
-import 'image_compressor_widget.dart';
+
+import 'widgets/animated_list_view_builder_widget.dart';
 
 
 
