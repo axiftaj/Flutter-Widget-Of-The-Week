@@ -1,8 +1,6 @@
+import 'package:asif/permissions/permission_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'widgets/animated_list_view_builder_widget.dart';
-
 
 
 void main() {
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AnimatedListViewBuilderWidget(),
+      home: PermissionScreen(),
     );
   }
 
