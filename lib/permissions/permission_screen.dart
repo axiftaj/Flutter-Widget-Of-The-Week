@@ -18,7 +18,6 @@ class PermissionScreen extends StatelessWidget {
                 final permisison  =  CameraPermission();
 
                 permisison.requestPermission().then((value){
-                  print(value);
                   if(value.isPermanentlyDenied){
                   //  permisison.openAppSettingsForTheCameraPermission();
                   }
