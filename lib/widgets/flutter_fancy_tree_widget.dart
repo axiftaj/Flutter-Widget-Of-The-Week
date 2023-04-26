@@ -54,6 +54,7 @@ class _FlutterFancyTreeWidgetState extends State<FlutterFancyTreeWidget> {
       children: <CommentsModel>[
         CommentsModel(
           title: 'Node 2.1',
+
         ),
         CommentsModel(title: 'Node 2.2')
       ],

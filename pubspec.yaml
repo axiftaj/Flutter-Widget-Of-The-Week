@@ -47,6 +47,7 @@ dependencies:
   path_provider:
   sticky_grouped_list: ^3.1.0
   get: ^4.6.5
+  comment_tree: ^0.3.0
   reorderable_grid_view: ^2.2.5
   intl:
   flutter_quill:
