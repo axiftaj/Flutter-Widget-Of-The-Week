@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -146,7 +147,9 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                         final DateTime prevDate = returnDateAndTimeFormat(messagesList[index+1].timeStamp.toString());
                         isSameDate = date.isAtSameMomentAs(prevDate);
 
-                        print("$date $prevDate $isSameDate");
+                        if (kDebugMode) {
+                          print("$date $prevDate $isSameDate");
+                        }
                         newDate =  isSameDate ?  '' : groupMessageDateAndTime(messagesList[index-1].timeStamp.toString()).toString() ;
                       }
 
@@ -179,7 +182,6 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                                     maxWidth: MediaQuery.of(context).size.width * .7,
                                   ),
                                   margin:messagesList[index].isMe ? const EdgeInsets.fromLTRB(7, 7, 17, 7) : const EdgeInsets.fromLTRB(17, 7, 7, 7),
-
                                   child: Stack(
                                     children: [
                                       Padding(

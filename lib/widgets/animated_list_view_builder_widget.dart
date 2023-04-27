@@ -24,8 +24,7 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
       appBar: AppBar(
         actions: [
           IconButton(onPressed: (){
-            listKey.currentState!.removeItem(
-                0, (_, animation) => sizeIt(context, 0, animation),
+            listKey.currentState!.removeItem(0, (_, animation) => sizeIt(context, 0, animation),
                 duration: const Duration(milliseconds: 500));
             _items.removeAt(0);
           }, icon:  Icon(Icons.remove_circle_outline))
@@ -33,10 +32,8 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          listKey.currentState!.insertItem(0,
-              duration: const Duration(milliseconds: 500));
-          _items = []
-            ..add(counter++)
+          listKey.currentState!.insertItem(0, duration: const Duration(milliseconds: 500));
+          _items = []..add(counter++)
             ..addAll(_items);
         },
       ),
@@ -45,7 +42,13 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
           key: listKey,
           initialItemCount: _items.length,
           itemBuilder: (context, index, animation){
-            return sizeIt(context, index, animation);
+            return InkWell(
+                onTap: (){
+                  listKey.currentState!.removeItem(0, (_, animation) => sizeIt(context, 0, animation),
+                      duration: const Duration(milliseconds: 500));
+                  _items.removeAt(index);
+                },
+                child: slideIt(context, index, animation));
           },
         ),
       ),
