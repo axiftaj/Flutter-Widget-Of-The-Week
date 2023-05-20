@@ -73,7 +73,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
       body: SafeArea(
         child: Column(
           children: [
-            if(image != null )
+            if(newImage != null )
             SizedBox(
               child: Image.file(
                 File(newImage!.path),
