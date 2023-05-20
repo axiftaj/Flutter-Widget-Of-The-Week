@@ -159,8 +159,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                           crossAxisAlignment: messagesList[index].isMe ?  CrossAxisAlignment.end  : CrossAxisAlignment.start,
                           children: [
                             if(newDate.isNotEmpty)
-                              Center(child:
-                              Container(
+                              Center(child: Container(
                                   decoration: BoxDecoration(
                                       color: Color(0xffE3D4EE),
                                       borderRadius: BorderRadius.circular(20)

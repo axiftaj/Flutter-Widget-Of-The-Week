@@ -27,7 +27,7 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
             listKey.currentState!.removeItem(0, (_, animation) => sizeIt(context, 0, animation),
                 duration: const Duration(milliseconds: 500));
             _items.removeAt(0);
-          }, icon:  Icon(Icons.remove_circle_outline))
+          }, icon:  const Icon(Icons.remove_circle_outline))
         ],
       ),
       floatingActionButton: FloatingActionButton(

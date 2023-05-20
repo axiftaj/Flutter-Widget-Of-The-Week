@@ -1,10 +1,13 @@
 
 
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
+
+
 
 class ImageCompressorWidget extends StatefulWidget {
   const ImageCompressorWidget({Key? key}) : super(key: key);
@@ -23,14 +26,16 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
   Future imagePickerFromCamera ()async{
 
 
-    image = (await picker.pickImage(source: ImageSource.camera))!;
+    image = (await picker.pickImage(source: ImageSource.gallery))!;
     final bytes = await image!.readAsBytes();
 
     //image size before compression in mb
     //converting image size to
     final kb = bytes.length / 1024;
      final mb = kb / 1024;
-    print(mb);
+    if (kDebugMode) {
+      print("original image size: "+ mb.toString());
+    }
 
     final dir = await path_provider.getTemporaryDirectory();
     final targetPath = dir.absolute.path + '/temp.jpg';
@@ -39,16 +44,18 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     final result = await FlutterImageCompress.compressAndGetFile(
       image!.path,
       targetPath,
-      minHeight: 1080, //you can play with this to reduce siz
-      minWidth: 1080,
-      quality: 90, // keep this high to get the original qualit if image
+      minHeight: 1090, //you can play with this to reduce siz
+      minWidth: 1090,
+      quality: 80, // keep this high to get the original quality if image
     );
 
 
     //image size after compression in mb
     final newKb = result!.readAsBytesSync().length / 1024;
     final newMb = newKb / 1024;
-    print(newMb);
+    if (kDebugMode) {
+      print("new image size: "+ newMb.toString());
+    }
     newImage = result;
 
     setState(() {});
