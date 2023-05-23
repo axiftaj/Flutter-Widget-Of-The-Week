@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 
-<key>NSCameraUsageDescription</key>
+    <key>NSCameraUsageDescription</key>
 	<string>To capture profile photo please grant camera access</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     	<string>App needs access to photo lib for profile images</string>

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 
-
+import 'package:path/path.dart' as path_provider ;
 
 class ImageCompressorWidget extends StatefulWidget {
   const ImageCompressorWidget({Key? key}) : super(key: key);
@@ -19,14 +19,48 @@ class ImageCompressorWidget extends StatefulWidget {
 class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
 
   File? newImage ;
+
   XFile? image ;
+
   final picker = ImagePicker();
 
   // method to pick single image while replacing the photo
-  Future imagePickerFromCamera ()async{
+  Future imagePickerFromGallery ()async{
 
     image = (await picker.pickImage(source: ImageSource.gallery))!;
     final bytes = await image!.readAsBytes();
+
+    final mewytes = bytes.length / 1024;
+    final kb = mewytes / 1024;
+    final mb = kb / 1024;
+    if (kDebugMode) {
+      print('original image size:'+mb.toString());
+    }
+
+    final dir = await path_provider.getTemporaryDirectory();
+    final targetPath = '${dir.absolute.path}/temp.jpg';
+
+    // converting original image to compress it
+    final result = await FlutterImageCompress.compressAndGetFile(
+      image!.path,
+      targetPath,
+      minHeight: 1080, //you can play with this to reduce siz
+      minWidth: 1080,
+      quality: 90, // keep this high to get the original quality of image
+    );
+
+    final data = await result!.readAsBytes() ;
+
+
+    final newBytes = data.length / 1024;
+    final newKb = newBytes / 1024;
+    final newMb = newKb / 1024;
+
+    if (kDebugMode) {
+      print('original image size:'+newMb.toString());
+    }
+
+    newImage = File(result.path) ;
 
     setState(() {});
 
@@ -37,7 +71,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     return  Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          imagePickerFromCamera ();
+          imagePickerFromGallery();
         },
       ),
       body: SafeArea(
@@ -46,7 +80,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
             if(image != null )
             SizedBox(
               child: Image.file(
-                File(image!.path),
+                File(newImage !.path),
                 fit: BoxFit.fitHeight,
               ),
             ),
