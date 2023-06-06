@@ -2,8 +2,10 @@ import 'package:asif/message_grouping_with_time_stamp.dart';
 import 'package:asif/permissions/permission_screen.dart';
 import 'package:asif/provider/provider_screen.dart';
 import 'package:asif/widgets/animated_list_view_builder_widget.dart';
+import 'package:asif/widgets/filter_list_view_builder_widget.dart';
 import 'package:asif/widgets/flutter_fancy_tree_widget.dart';
 import 'package:asif/widgets/image_compressor_widget.dart';
+import 'package:asif/widgets/re_orderable_list_view_builder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,9 +25,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-      home: ImageCompressorWidget(),
+      home: FilterListViewBuilderWidget(),
     );
   }
 

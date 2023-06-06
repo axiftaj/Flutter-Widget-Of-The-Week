@@ -44,7 +44,11 @@ class _ReorderableListViewWidgetState extends State<ReorderableListViewWidget> {
                 newIndex = newIndex - 1;
               }
               final element = _products.removeAt(oldIndex);
+              print(_products.length);
+              print(element);
               _products.insert(newIndex, element);
+              print(_products.length);
+
             });
           }),
     );
