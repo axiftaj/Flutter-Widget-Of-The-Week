@@ -1,3 +1,4 @@
+import 'package:asif/freeze/freeze_screen.dart';
 import 'package:asif/message_grouping_with_time_stamp.dart';
 import 'package:asif/permissions/permission_screen.dart';
 import 'package:asif/provider/provider_screen.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-      home: FilterListViewBuilderWidget(),
+      home: FreezeScreen(),
     );
   }
 
