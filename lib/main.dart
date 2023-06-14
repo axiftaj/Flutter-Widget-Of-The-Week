@@ -8,9 +8,10 @@ import 'package:asif/widgets/flutter_fancy_tree_widget.dart';
 import 'package:asif/widgets/image_compressor_widget.dart';
 import 'package:asif/widgets/re_orderable_list_view_builder_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
@@ -29,6 +30,18 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
+     // localizationsDelegates: AppLocalizations.localizationsDelegates,
+     // supportedLocales: AppLocalizations.supportedLocales,
+
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        AppLocalizations.delegate,
+        AppLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('es'), // Spanish
+      ],
       home: FreezeScreen(),
     );
   }
