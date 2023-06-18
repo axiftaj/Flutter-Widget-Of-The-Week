@@ -30,9 +30,14 @@ class _DatesWidgetState extends State<DatesWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(title : 'Problem' , date: now.toString()),
-
-                TextWidget(title : 'Current Date Format YMD' , date:DatesUtils().dateFormatYMD()),
+                const Divider(),
+                const Text('Custom Date'),
                 TextWidget(title : 'Date & Time Format', date:DatesUtils().dateFormatYMDKKMM()),
+                TextWidget(title: 'Date' ,date: "${DateFormat.y().format(now)}:${DateFormat.M().format(now)}:${DateFormat.d().format(now)}"),
+                TextWidget(title: 'Date' ,date: "${DateFormat.y().format(now)}-${DateFormat.M().format(now)}-${DateFormat.d().format(now)}"),
+                TextWidget(title: 'Date' ,date: "${DateFormat.y().format(now)}/${DateFormat.M().format(now)}/${DateFormat.d().format(now)}"),
+                TextWidget(title: 'Date DMY' ,date: "${DateFormat.d().format(now)}/${DateFormat.M().format(now)}/${DateFormat.y().format(now)}"),
+
                 const Divider(),
                 TextWidget(title : 'Date' , date:DateFormat.d().format(DateTime.now())),
                 TextWidget(title : 'Day name' ,date:DateFormat.EEEE().format(DateTime.now())),
@@ -104,16 +109,10 @@ class TextWidget extends StatelessWidget {
 class DatesUtils {
 
 
-  String dateFormatYMD(){
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd').format(now.toLocal());
-
-    return formattedDate ;
-  }
-
   String dateFormatYMDKKMM(){
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd , kk:mm').format(now);
+
+    String formattedDate = DateFormat('yyyy-MM-dd , hh:mm').format(now);
     return formattedDate ;
   }
 
