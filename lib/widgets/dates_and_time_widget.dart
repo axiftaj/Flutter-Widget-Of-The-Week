@@ -3,14 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class DatesWidget extends StatefulWidget {
-  const DatesWidget({Key? key}) : super(key: key);
+class DatesAndTimeWidget extends StatefulWidget {
+  const DatesAndTimeWidget({Key? key}) : super(key: key);
 
   @override
-  State<DatesWidget> createState() => _DatesWidgetState();
+  State<DatesAndTimeWidget> createState() => _DatesAndTimeWidgetState();
 }
 
-class _DatesWidgetState extends State<DatesWidget> {
+class _DatesAndTimeWidgetState extends State<DatesAndTimeWidget> {
 
 
   DateTime now = DateTime.now() ;

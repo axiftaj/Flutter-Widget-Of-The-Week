@@ -1,5 +1,5 @@
 import 'package:asif/freeze/freeze_screen.dart';
-import 'package:asif/widgets/dates_widget.dart';
+import 'package:asif/widgets/dates_and_time_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('es'), // Spanish
       ],
-      home: DatesWidget(),
+      home: DatesAndTimeWidget(),
     );
   }
 
