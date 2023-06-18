@@ -57,7 +57,7 @@ class _DatesAndTimeWidgetState extends State<DatesAndTimeWidget> {
                 const Divider(),
                 const Text('Day ago:' , style: TextStyle(fontWeight: FontWeight.bold),),
                 Text("${DatesUtils().daysAgo(DateTime.now().microsecondsSinceEpoch.toString())},${DatesUtils().daysAgo(DateTime(now.year, now.month, now.day-1).microsecondsSinceEpoch.toString())},${DatesUtils().daysAgo(DateTime(now.year, now.month, now.day-2).microsecondsSinceEpoch.toString())},${DatesUtils().daysAgo(DateTime(now.year, now.month, now.day-3).microsecondsSinceEpoch.toString())}" ,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                 ),
                 const Divider(),
                 const Text('Minutes, hours & weeks ago:' , style: TextStyle(fontWeight: FontWeight.bold),),
@@ -74,6 +74,7 @@ class _DatesAndTimeWidgetState extends State<DatesAndTimeWidget> {
                 TextWidget(date: DatesUtils().compareTimesForSevenDays(DateTime(2023, 06, 11).microsecondsSinceEpoch.toString())),
                 TextWidget(date: DatesUtils().compareTimesForSevenDays(DateTime(2023, 06, 10).microsecondsSinceEpoch.toString())),
                 const Divider(),
+
 
               ],
             ),
@@ -159,6 +160,7 @@ class DatesUtils {
 
     final todayDate = DateTime.now();
 
+
     final today = DateTime(todayDate.year, todayDate.month, todayDate.day);
     final yesterday = DateTime(todayDate.year, todayDate.month, todayDate.day - 1);
     final dayBeforeYesterday = DateTime(todayDate.year, todayDate.month, todayDate.day - 2);
@@ -191,6 +193,7 @@ class DatesUtils {
   }
 
   String timesAndMinutesAgo(String timestamp){
+
     var now = DateTime.now();
     var format = DateFormat('HH:mm a');
     var date = DateTime.fromMicrosecondsSinceEpoch(int.parse(timestamp));
