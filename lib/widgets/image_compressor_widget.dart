@@ -30,9 +30,9 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     image = (await picker.pickImage(source: ImageSource.gallery))!;
     final bytes = await image!.readAsBytes();
 
-    final mewytes = bytes.length / 1024;
-    final kb = mewytes / 1024;
+    final kb = bytes.length / 1024;
     final mb = kb / 1024;
+
     if (kDebugMode) {
       print('original image size:'+mb.toString());
     }
@@ -46,18 +46,19 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
       targetPath,
       minHeight: 1080, //you can play with this to reduce siz
       minWidth: 1080,
-      quality: 90, // keep this high to get the original quality of image
+      quality: 50, // keep this high to get the original quality of image
     );
 
     final data = await result!.readAsBytes() ;
 
 
-    final newBytes = data.length / 1024;
-    final newKb = newBytes / 1024;
+    final newKb = data.length / 1024;
+
     final newMb = newKb / 1024;
 
+
     if (kDebugMode) {
-      print('original image size:'+newMb.toString());
+      print('compress image size:'+newMb.toString());
     }
 
     newImage = File(result.path) ;
