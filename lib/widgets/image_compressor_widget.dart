@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:path/path.dart' as path_provider ;
-
 class ImageCompressorWidget extends StatefulWidget {
   const ImageCompressorWidget({Key? key}) : super(key: key);
 
@@ -28,8 +26,8 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
   Future imagePickerFromGallery ()async{
 
     image = (await picker.pickImage(source: ImageSource.gallery))!;
-    final bytes = await image!.readAsBytes();
 
+    final bytes = await image!.readAsBytes();
     final kb = bytes.length / 1024;
     final mb = kb / 1024;
 
@@ -46,16 +44,12 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
       targetPath,
       minHeight: 1080, //you can play with this to reduce siz
       minWidth: 1080,
-      quality: 50, // keep this high to get the original quality of image
+      quality: 90, // keep this high to get the original quality of image
     );
 
     final data = await result!.readAsBytes() ;
-
-
     final newKb = data.length / 1024;
-
     final newMb = newKb / 1024;
-
 
     if (kDebugMode) {
       print('compress image size:'+newMb.toString());
