@@ -1,14 +1,7 @@
 import 'package:asif/freeze/freeze_screen.dart';
-import 'package:asif/message_grouping_with_time_stamp.dart';
-import 'package:asif/permissions/permission_screen.dart';
-import 'package:asif/provider/provider_screen.dart';
-import 'package:asif/widgets/animated_list_view_builder_widget.dart';
-import 'package:asif/widgets/filter_list_view_builder_widget.dart';
-import 'package:asif/widgets/flutter_fancy_tree_widget.dart';
-import 'package:asif/widgets/image_compressor_widget.dart';
-import 'package:asif/widgets/re_orderable_list_view_builder_widget.dart';
+import 'package:asif/widgets/dates_widget.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
@@ -42,7 +35,7 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('es'), // Spanish
       ],
-      home: FreezeScreen(),
+      home: DatesWidget(),
     );
   }
 
