@@ -12,8 +12,8 @@ AppLanguage appLanguage = AppLanguage();
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
-
-  runApp(MyApp(locale: prefs.getString('language_code') ?? ''));
+  final String languageCode = prefs.getString('language_code') ?? '' ;
+  runApp(  MyApp(locale: languageCode ));
 }
 
 class MyApp extends StatelessWidget {

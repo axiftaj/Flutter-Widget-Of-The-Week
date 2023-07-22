@@ -28,10 +28,6 @@ class _ChangeLanguageWidgetState extends State<ChangeLanguageWidget> {
                   initialValue: selectedMenu,
                   // Callback that sets the selected popup menu item.
                   onSelected: (SampleItem item) {
-                    setState(() {
-                      selectedMenu = item;
-                    });
-                    print('hit');
 
                     if(SampleItem.itemOne.name == item.name){
                       provider.changeLanguage(const Locale('es'));
@@ -54,10 +50,46 @@ class _ChangeLanguageWidgetState extends State<ChangeLanguageWidget> {
                   ],
                 );
               }
-          )
+          ),
 
 
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: 100,),
+            Text(AppLocalizations.of(context)!.login.toString()),
+            SizedBox(height: 30,),
+            TextFormField(
+              decoration:  InputDecoration(
+                  hintText: AppLocalizations.of(context)!.email.toString() ,
+                enabledBorder: OutlineInputBorder()
+              ),
+            ),
+            const  SizedBox(height: 20,),
+            TextFormField(
+              decoration:  InputDecoration(
+                  hintText: AppLocalizations.of(context)!.password.toString() ,
+                  enabledBorder: OutlineInputBorder()
+              ),
+            ),
+            const  SizedBox(height: 50,),
+            Container(
+              height: 40,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.green
+              ),
+
+              child: Center(child: Text(AppLocalizations.of(context)!.login.toString())),
+            )
+          ],
+        ),
       ),
     );
   }
