@@ -1,42 +1,61 @@
-import 'package:asif/freeze/freeze_screen.dart';
-import 'package:asif/widgets/dates_and_time_widget.dart';
-import 'package:asif/widgets/image_compressor_widget.dart';
+import 'package:asif/provider/app_language/app_language.dart';
+import 'package:asif/widgets/change_lanugage_widget.dart';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
-void main() {
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+AppLanguage appLanguage = AppLanguage();
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  final prefs = await SharedPreferences.getInstance();
+
+  runApp(MyApp(locale: prefs.getString('language_code') ?? ''));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final String locale ;
+  const MyApp({Key? key , required this.locale}) : super(key: key);
+
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
-      ),
-     // localizationsDelegates: AppLocalizations.localizationsDelegates,
-     // supportedLocales: AppLocalizations.supportedLocales,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AppLanguage()),
+      ],
+      child: Consumer<AppLanguage>(
+        builder: (context, provider, child) {
+          if(provider.appLocal  ==  null){
 
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        AppLocalizations.delegate,
-        AppLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'), // English
-        Locale('es'), // Spanish
-      ],
-      home: ImageCompressorWidget(),
+            if(locale.isEmpty){
+              provider.changeLanguage(Locale( 'en'));
+            }
+          }
+          return MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            locale: locale == '' ? Locale( 'en') : provider.appLocal  ==  null ?  Locale(locale) :  Provider.of<AppLanguage>(context).appLocal,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'), // English
+              Locale('es'), // Spanish
+            ],
+
+            home: ChangeLanguageWidget(),
+          );
+        },
+      )
+
     );
   }
 
