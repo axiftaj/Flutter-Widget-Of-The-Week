@@ -30,10 +30,12 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<AppLanguage>(
         builder: (context, provider, child) {
-          if(provider.appLocal  ==  null){
 
-            if(locale.isEmpty){
-              provider.changeLanguage(Locale( 'en'));
+          if (provider.appLocal == null) {
+            if (locale.isEmpty) {
+              provider.changeLanguage(Locale('en'));
+            } else {
+              provider.changeLanguage(Locale(locale));
             }
           }
           return MaterialApp(
