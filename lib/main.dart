@@ -10,6 +10,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'error_example/error_example.dart';
+import 'extensions/country_code_country_flag_extension.dart';
 import 'extensions/sizebox_extension.dart';
 
 AppLanguage appLanguage = AppLanguage();
@@ -57,7 +59,7 @@ class MyApp extends StatelessWidget {
               Locale('es'), // Spanish
             ],
 
-            home: const InteractiveViewerWidget(),
+            home: const CountryCodeToFlagExtension(),
           );
         },
       )
