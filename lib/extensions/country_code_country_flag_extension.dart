@@ -7,17 +7,17 @@ class CountryCodeToFlagExtension extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text('Extentsion'),
+        title: const Text('Extension'),
       ),
-      body: Center(child: Text("IND".toFlag.toString(), style:  TextStyle(fontSize: 50),)),
+      body: Center(
+          child: Text("IND".toFlag.toString(), style:  const TextStyle(fontSize: 50),)),
     );
   }
 }
 
 
-extension  convertFlag on String {
+extension ConvertFlag on String {
   String get toFlag {
-
     return  (this).toUpperCase().replaceAllMapped(RegExp(r'[A-Z]'),
             (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
   }
