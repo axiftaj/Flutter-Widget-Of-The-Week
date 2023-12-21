@@ -7,7 +7,7 @@ class CountryCodeToFlagExtension extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text('Extension'),
+        title: const Text('Flag Extension'),
       ),
       body: Center(
           child: Text("IND".toFlag.toString(), style:  const TextStyle(fontSize: 50),)),
