@@ -77,6 +77,7 @@ dev_dependencies:
   freezed: ^2.3.5
   build_runner: ^2.4.5
   json_serializable: ^6.7.0
+  equatable:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
