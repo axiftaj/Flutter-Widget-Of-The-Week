@@ -36,7 +36,7 @@ class _ImageCompressorWidgetState extends State<ImageCompressorWidget> {
     }
 
     final dir = await path_provider.getTemporaryDirectory();
-    final targetPath = '${dir.absolute.path}/temp.jpg';
+    final targetPath = '${dir.absolute.path}/${DateTime.now().millisecondsSinceEpoch}.jpg';
 
     // converting original image to compress it
     final result = await FlutterImageCompress.compressAndGetFile(
