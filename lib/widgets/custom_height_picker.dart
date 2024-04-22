@@ -56,7 +56,7 @@ class _CustomerHeightPickerState extends State<CustomerHeightPicker> {
                               cardColor: Colors.transparent,
                               backgroundColor: Colors.transparent ,
                             dividerColor: Colors.transparent ,
-                            selectedRowColor:  Colors.transparent
+                            //selectedRowColor:  Colors.transparent
                           ),
                           child: CupertinoPicker(
                             useMagnifier: true,

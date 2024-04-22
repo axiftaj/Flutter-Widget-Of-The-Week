@@ -1,10 +1,6 @@
-
-
-import 'package:asif/freeze/person.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FreezeScreen extends StatefulWidget {
   const FreezeScreen({Key? key}) : super(key: key);
@@ -14,87 +10,72 @@ class FreezeScreen extends StatefulWidget {
 }
 
 class _FreezeScreenState extends State<FreezeScreen> {
+  List<PersonModel> personList = [PersonModel(name: null), PersonModel(name: 'John'), PersonModel(name: 'John')];
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.helloWorld),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){
+      body: ListView.builder(
+          itemCount: personList.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(personList[index].name ?? ''),
+            );
+          }),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        var john = PersonModel(name: 'John');
+        var john2 = PersonModel(
+          name: 'John',
+        );
 
-        var john = UserModel(firstName: 'John', lastName: 'Smith');
-        var john2 = UserModel(firstName: 'John', lastName: 'Smith');
-
-
+        print(john2 == john);
         Map<String, dynamic> data = {
-          'firstName' : 'Asif Taj' ,
-          'lastName' : 'Taj' ,
-          'age' : 20
+          'name': 'Asif Taj',
         };
 
-        Map<String, dynamic> copyData = {
-          'firstName' : 'Hello world' ,
-          'lastName' : 'Taj' ,
-          'age' : 20
-        };
-        PersonModel personModel = PersonModel.fromJson(data) ;
-        personModel =   personModel.copyWith(firstName: 'hello world' , lastName: 'Dart' , age: 22);
-
+        PersonModel personModel = PersonModel.fromJson(data);
+        print(personModel.name.toString());
+        personModel = personModel.copyWith(name: 'new value');
         if (kDebugMode) {
-          print(personModel);
+          print(personModel.name);
         }
-
-        // if (kDebugMode) {
-        //   print("First name:${personModel.firstName} "
-        //       "Last name:${personModel.lastName} "
-        //       "age ${personModel.age}");
-        // }
-
-
-        //print(person == john2);
       }),
     );
   }
 }
 
-
-
 class PersonModel {
-  String? firstName;
-  String? lastName;
-  int? age;
+  String? name;
 
-  PersonModel({this.firstName, this.lastName, this.age});
+  PersonModel({this.name});
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is PersonModel && runtimeType == other.runtimeType && name == other.name;
+
+  @override
+  int get hashCode => name.hashCode;
 
   PersonModel.fromJson(Map<String, dynamic> json) {
-    firstName = json['firstName'];
-    lastName = json['lastName'];
-    age = json['age'];
+    name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['age'] = this.age;
+    data['name'] = this.name;
     return data;
   }
 
-
   PersonModel copyWith({
-    String? firstName,
-    String? lastName,
-    int? age
-  }){
-    return PersonModel(
-      firstName: firstName,
-      lastName: lastName ,
-      age: age
-    );
+    String? name,
+  }) {
+    return PersonModel(name: name ?? name);
   }
 
   @override
   String toString() {
-    return 'Person(firstName: $firstName, lastName: $lastName , age:$age)';
+    return 'Person(firstName: $name)';
   }
 }

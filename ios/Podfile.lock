@@ -12,6 +12,8 @@ PODS:
     - SDWebImageWebPCoder
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
+  - flutter_localization (0.0.1):
+    - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
   - image_picker_ios (0.0.1):
@@ -69,6 +71,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_image_compress_common (from `.symlinks/plugins/flutter_image_compress_common/ios`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
+  - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - images_picker (from `.symlinks/plugins/images_picker/ios`)
@@ -100,6 +103,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_image_compress_common/ios"
   flutter_keyboard_visibility:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
+  flutter_localization:
+    :path: ".symlinks/plugins/flutter_localization/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   image_picker_ios:
@@ -122,10 +127,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_image_compress_common: ec1d45c362c9d30a3f6a0426c297f47c52007e3e
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
-  geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
+  flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
+  geolocator_apple: 9157311f654584b9bb72686c55fc02a97b73f461
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   images_picker: fa9364e3a7d3083c49f865fcfb2b9e7cdc574d3a
   libphonenumber_plugin: e8a7d64a6624a7c25f2c4ab0b7ead2a8e341e35e
@@ -142,6 +148,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   ZLPhotoBrowser: 4bfab86b851042e18d7f413284472aa68759626a
 
-PODFILE CHECKSUM: 21b64fbb12492d731c9be90cbe0f2d328bef4b49
+PODFILE CHECKSUM: ce13d36744da294d67f8e460dbb7aed7c09bd7f4
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.3

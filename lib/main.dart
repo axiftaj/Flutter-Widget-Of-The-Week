@@ -1,20 +1,16 @@
 import 'package:asif/freeze/freeze_screen.dart';
+import 'package:asif/permissions/location_permission.dart';
 import 'package:asif/provider/app_language/app_language.dart';
-import 'package:asif/widgets/change_lanugage_widget.dart';
-import 'package:asif/widgets/ineractive_viewer_widget.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'error_example/error_example.dart';
-import 'extensions/country_code_country_flag_extension.dart';
-import 'extensions/sizebox_extension.dart';
+
 
 AppLanguage appLanguage = AppLanguage();
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
@@ -59,7 +55,7 @@ class MyApp extends StatelessWidget {
               Locale('es'), // Spanish
             ],
 
-            home: const CountryCodeToFlagExtension(),
+            home: const FreezeScreen(),
           );
         },
       )

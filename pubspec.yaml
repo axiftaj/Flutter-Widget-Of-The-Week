@@ -52,7 +52,7 @@ dependencies:
   carousel_slider:
   syncfusion_flutter_sliders:
   provider: ^6.0.5
-  geolocator: ^9.0.2
+  geolocator: ^10.1.0
   permission_handler: ^10.2.0
   image_picker:
   flutter_image_compress: ^2.0.3
@@ -61,6 +61,7 @@ dependencies:
   json_annotation: ^4.8.1
   flutter_localizations:
     sdk: flutter
+  flutter_localization: ^0.2.0
 
 
 
