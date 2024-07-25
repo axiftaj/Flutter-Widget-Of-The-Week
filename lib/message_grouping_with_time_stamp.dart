@@ -190,7 +190,7 @@ class _MessageGroupingWithTimeStampState extends State<MessageGroupingWithTimeSt
                                         child: Text(
                                           messagesList[index].message  ,
                                           textAlign: TextAlign.left,
-                                          style: Theme.of(context).textTheme.headline5!.copyWith(
+                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                               fontSize: 15 ,
                                               color: messagesList[index].isMe ? const Color(0xff705982) : const Color(0xff677D81)
                                           ),

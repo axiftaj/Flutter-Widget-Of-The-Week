@@ -151,7 +151,6 @@ class _HtmlEditorState extends State<HtmlEditor> {
 
                       enableInteractiveSelection: true,
                     //  placeholder: 'Enter text',
-                      enableSelectionToolbar: false,
 
                       expands: false,
                       padding: EdgeInsets.zero,
@@ -163,7 +162,7 @@ class _HtmlEditorState extends State<HtmlEditor> {
                         color: Colors.red,
 
                         placeHolder: DefaultTextBlockStyle(
-                            Theme.of(context).textTheme.headline5!.copyWith(
+                            Theme.of(context).textTheme.bodyMedium!.copyWith(
                                 height: 0,
                                 fontSize: 16),
                             const Tuple2(8, 0),
@@ -172,7 +171,7 @@ class _HtmlEditorState extends State<HtmlEditor> {
                         bold: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold , height: 0),
                         italic: const TextStyle(color: Colors.black,  height: 0 , fontStyle: FontStyle.italic),
                         paragraph: DefaultTextBlockStyle(
-                            Theme.of(context).textTheme.headline5!.copyWith(
+                            Theme.of(context).textTheme.bodyMedium!.copyWith(
                                 height: 0,
                                 fontSize: 20, ),
                             const Tuple2(8, 0),

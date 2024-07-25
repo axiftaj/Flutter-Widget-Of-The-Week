@@ -15,7 +15,7 @@ class SizeBoxExtensionWidget extends StatelessWidget {
           children: [
             Text(
           'Hello, World!',
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.bodyMedium,
           ).center(),
             20.ph,//I
             const ContainerWidget(),

@@ -54,7 +54,6 @@ class _CustomerHeightPickerState extends State<CustomerHeightPicker> {
                           data: ThemeData.light().copyWith(
                               primaryColor: Colors.transparent ,
                               cardColor: Colors.transparent,
-                              backgroundColor: Colors.transparent ,
                             dividerColor: Colors.transparent ,
                             //selectedRowColor:  Colors.transparent
                           ),

@@ -69,7 +69,7 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
         child: Card(
           color: Colors.primaries[item % Colors.primaries.length],
           child: Center(
-            child: Text('Item $item', style: Theme.of(context).textTheme.headline4),
+            child: Text('Item $item', style: Theme.of(context).textTheme.bodyMedium),
           ),
         ),
       ),
@@ -87,7 +87,7 @@ class _AnimatedListViewBuilderWidgetState extends State<AnimatedListViewBuilderW
         child: Card(
           color: Colors.primaries[item % Colors.primaries.length],
           child: Center(
-            child: Text('Item $item', style: Theme.of(context).textTheme.headline4),
+            child: Text('Item $item', style: Theme.of(context).textTheme.bodyMedium),
           ),
         ),
       ),

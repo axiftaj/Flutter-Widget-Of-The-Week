@@ -59,7 +59,7 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(child: Text(selectedValue, style: Theme.of(context).textTheme.headline5!.copyWith(fontSize: 16))),
+                            Expanded(child: Text(selectedValue, style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16))),
                             Icon( isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down ,
                               color: isExpanded  ? Colors.red : Colors.blue,
                             )
@@ -89,7 +89,7 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
 
                             ),
                             child: Center(child: Text(e.toString() ,
-                              style:Theme.of(context).textTheme.headline2!.copyWith(
+                              style:Theme.of(context).textTheme.headlineLarge!.copyWith(
                                   fontSize: 14,
                                   color: selectedValue == e  ? Colors.black : Colors.blue
                               ) ,))
