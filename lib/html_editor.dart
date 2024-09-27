@@ -69,7 +69,7 @@ class _HtmlEditorState extends State<HtmlEditor> {
         extentOffset: offset + length,
       );
 
-      controller.updateSelection(selection, ChangeSource.REMOTE);
+      controller.updateSelection(selection, ChangeSource.remote);
 
       // _selectionType = _SelectionType.line;
 
@@ -123,7 +123,7 @@ class _HtmlEditorState extends State<HtmlEditor> {
                       topLeft: Radius.circular(8)
                   )
               ),
-              child: QuillToolbar.basic(controller: _controller ),
+              child: QuillToolbar.simple(controller: _controller ),
             ),
             Container(
               height: 200,
@@ -142,44 +142,9 @@ class _HtmlEditorState extends State<HtmlEditor> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15 , top: 15, bottom: 20),
                     child: QuillEditor(
-                      controller: _controller!,
+                      controller: _controller,
                       scrollController: ScrollController(),
-                      scrollable: true,
                       focusNode: bodyFocusNode,
-                      autoFocus: false,//
-                      readOnly: false,
-
-                      enableInteractiveSelection: true,
-                    //  placeholder: 'Enter text',
-
-                      expands: false,
-                      padding: EdgeInsets.zero,
-                      onTapUp: (details, p1) {
-                        return _onTripleClickSelection();
-                      },
-
-                      customStyles: DefaultStyles(
-                        color: Colors.red,
-
-                        placeHolder: DefaultTextBlockStyle(
-                            Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                height: 0,
-                                fontSize: 16),
-                            const Tuple2(8, 0),
-                            const Tuple2(0, 0),
-                            null),
-                        bold: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold , height: 0),
-                        italic: const TextStyle(color: Colors.black,  height: 0 , fontStyle: FontStyle.italic),
-                        paragraph: DefaultTextBlockStyle(
-                            Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                height: 0,
-                                fontSize: 20, ),
-                            const Tuple2(8, 0),
-                            const Tuple2(0, 0),
-                            null),
-
-                      ),
-
                     ),
                   ),
                 ),

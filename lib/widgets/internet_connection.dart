@@ -46,36 +46,36 @@ class InternetConnectivityScreen extends StatelessWidget {
         centerTitle: true,
         title: Text('Internet Connectivity'),
       ),
-      body: SafeArea(
-        child: StreamBuilder<ConnectivityResult>(
-          stream: connectivity.onConnectivityChanged,
-          builder: (_, snapshot){
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: CheckInternetConnectionWidget(
-                snapshot: snapshot,
-                widget: Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: 120,
-                          itemBuilder: (context, index){
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Container(
-                                  color: colors[random.nextInt(7)],
-                                  height: 100,
-                                  child: Center(child: Text(index.toString()))),
-                            );
-                          }),
-                    )
-                  ],
-                ),
-              ),
-            ) ;
-          },
-        ),
-      ),
+      // body: SafeArea(
+      //   child: StreamBuilder<ConnectivityResult>(
+      //     stream: connectivity.onConnectivityChanged,
+      //     builder: (_, snapshot){
+      //       return Padding(
+      //         padding: const EdgeInsets.symmetric(horizontal: 10),
+      //         child: CheckInternetConnectionWidget(
+      //           snapshot: snapshot,
+      //           widget: Column(
+      //             children: [
+      //               Expanded(
+      //                 child: ListView.builder(
+      //                     itemCount: 120,
+      //                     itemBuilder: (context, index){
+      //                       return Padding(
+      //                         padding: const EdgeInsets.only(bottom: 8),
+      //                         child: Container(
+      //                             color: colors[random.nextInt(7)],
+      //                             height: 100,
+      //                             child: Center(child: Text(index.toString()))),
+      //                       );
+      //                     }),
+      //               )
+      //             ],
+      //           ),
+      //         ),
+      //       ) ;
+      //     },
+      //   ),
+      // ),
     );
   }
 }

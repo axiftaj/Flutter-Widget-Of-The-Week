@@ -27,7 +27,7 @@ class _PhoneNumberValidationState extends State<PhoneNumberValidation> {
   @override
   initState() {
     super.initState();
-    controller = PhoneController(null);
+    controller = PhoneController();
     controller.addListener(() => setState(() {}));
   }
 
@@ -166,12 +166,12 @@ class _PhoneNumberValidationState extends State<PhoneNumberValidation> {
                     Text(
                         'is valid fixed line number ${controller.value?.isValid(type: PhoneNumberType.fixedLine) ?? 'false'}'),
                     const SizedBox(height: 12),
-                    ElevatedButton(
-                      onPressed: controller.value == null
-                          ? null
-                          : () => controller.reset(),
-                      child: const Text('reset'),
-                    ),
+                    // ElevatedButton(
+                    //   onPressed: controller.value == null
+                    //       ? null
+                    //       : () => controller.,
+                    //   child: const Text('reset'),
+                    // ),
                     const SizedBox(height: 12),
                     ElevatedButton(
                       onPressed: () => controller.selectNationalNumber(),
@@ -224,9 +224,9 @@ class PhoneFieldView extends StatelessWidget {
   PhoneNumberInputValidator? _getValidator() {
     List<PhoneNumberInputValidator> validators = [];
     if (mobileOnly) {
-      validators.add(PhoneValidator.validMobile());
+      //validators.add(PhoneValidator.validMobile(context));
     } else {
-      validators.add(PhoneValidator.valid());
+     // validators.add(PhoneValidator.valid());
     }
     return validators.isNotEmpty ? PhoneValidator.compose(validators) : null;
   }

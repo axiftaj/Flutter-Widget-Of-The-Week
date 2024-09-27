@@ -15,7 +15,6 @@ class _StreamsBuilderScreenState extends State<StreamsBuilderScreen> {
 
   StreamSocket streamSocket = StreamSocket();
 
-
   late StreamSubscription<DateTime> streamSubscription;
   DateTime currentTime = DateTime.now();
 
