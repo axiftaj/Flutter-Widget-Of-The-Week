@@ -1,15 +1,12 @@
-import 'package:asif/freeze/freeze_screen.dart';
-import 'package:asif/permissions/location_permission.dart';
 import 'package:asif/provider/app_language/app_language.dart';
 import 'package:asif/screen/pagination_screen/pagination_screen.dart';
-import 'package:asif/widgets/custom_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'math_ai_screen.dart';
 
 AppLanguage appLanguage = AppLanguage();
 

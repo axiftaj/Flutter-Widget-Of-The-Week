@@ -13,6 +13,7 @@ class PostProvider with ChangeNotifier {
   final int _limit = 20; // Adjust the limit as needed
 
   List<PostModel> get posts => _posts;
+
   bool get isLoading => _isLoading;
   bool get hasMore => _hasMore;
 
