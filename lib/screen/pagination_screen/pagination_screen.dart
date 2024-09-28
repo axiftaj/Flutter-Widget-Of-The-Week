@@ -23,6 +23,7 @@ class _PaginationScreenState extends State<PaginationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(title: Text('Posts with Pagination')),
       body: ChangeNotifierProvider(
         create: (_) => postProvider..fetchPosts(),
@@ -42,9 +43,11 @@ class _PaginationScreenState extends State<PaginationScreen> {
                     return Center(child: CircularProgressIndicator());
                   }
                   final post = postProvider.posts[index];
-                  return ListTile(
-                    title: Text(post.title),
-                    subtitle: Text(post.body),
+                  return Card(
+                    child: ListTile(
+                      title: Text(post.title),
+                      subtitle: Text(post.body),
+                    ),
                   );
                 },
               ),
