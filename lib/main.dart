@@ -1,5 +1,6 @@
 import 'package:asif/provider/app_language/app_language.dart';
 import 'package:asif/screen/pagination_screen/pagination_screen.dart';
+import 'package:asif/utils/session_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,6 +15,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   final String languageCode = prefs.getString('language_code') ?? '' ;
+  await SessionController.instance.loadSession();
   runApp(  MyApp(locale: languageCode ));
 }
 
@@ -31,7 +33,6 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<AppLanguage>(
         builder: (context, provider, child) {
-
           if (provider.appLocal == null) {
             if (locale.isEmpty) {
               provider.changeLanguage(Locale('en'));

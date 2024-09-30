@@ -15,4 +15,5 @@ class PostRepository {
       throw Exception('Failed to load posts');
     }
   }
+
 }

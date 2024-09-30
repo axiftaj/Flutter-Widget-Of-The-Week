@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   country_picker: ^2.0.16
   shared_preferences: ^2.0.15
+  flutter_secure_storage: ^9.2.2
   flutter_fancy_tree_view: ^1.1.1
   connectivity_plus: ^6.0.5
   images_picker:

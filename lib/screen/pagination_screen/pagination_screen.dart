@@ -1,4 +1,5 @@
 import 'package:asif/screen/pagination_screen/pagination_controller/pagination_controller.dart';
+import 'package:asif/utils/session_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,8 @@ class _PaginationScreenState extends State<PaginationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final auth =  SessionController.instance;
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(title: Text('Posts with Pagination')),

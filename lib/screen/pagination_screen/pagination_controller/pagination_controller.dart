@@ -6,10 +6,11 @@ class PostProvider with ChangeNotifier {
   final  _postService = PostRepository();
 
   List<PostModel> _posts =  [];
+
   bool _isLoading = false;
   bool _hasMore = true;
   int _page = 1;
-  final int _limit = 10; // Adjust the limit as needed
+  final int _limit = 20; // Adjust the limit as needed
 
   List<PostModel> get posts => _posts;
   bool get isLoading => _isLoading;
