@@ -1,5 +1,6 @@
 import 'package:asif/provider/app_language/app_language.dart';
 import 'package:asif/screen/pagination_screen/pagination_screen.dart';
+import 'package:asif/screen/search_places_api/google_map_search_places_api.dart';
 import 'package:asif/utils/session_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart' ;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'freeze/freeze_screen.dart';
 
 
 AppLanguage appLanguage = AppLanguage();
@@ -58,7 +61,7 @@ class MyApp extends StatelessWidget {
               Locale('es'), // Spanish
             ],
 
-            home: const PaginationScreen(),
+            home: const GoogleMapSearchPlacesApi(),
           );
         },
       )

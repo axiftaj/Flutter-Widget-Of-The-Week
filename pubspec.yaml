@@ -41,6 +41,7 @@ dependencies:
   connectivity_plus: ^6.0.5
   images_picker:
   tuple: ^2.0.1
+  http:
 
   sticky_grouped_list: ^3.1.0
   comment_tree: ^0.3.0

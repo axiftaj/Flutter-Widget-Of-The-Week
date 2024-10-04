@@ -32,7 +32,7 @@ class SessionController {
     final response = await Future.wait([
       storage.read(key: 'userId'),
       storage.read(key: 'token'),
-      storage.read(key: 'token')
+      storage.read(key: 'expiryDate')
     ]);
     userId = response[0];
     token = response[1];
@@ -51,7 +51,7 @@ class SessionController {
     await Future.wait([
       storage.delete(key: 'userId'),
       storage.delete(key: 'token'),
-      storage.delete(key: 'token')
+      storage.delete(key: 'expiryDate')
     ]);
   }
 }

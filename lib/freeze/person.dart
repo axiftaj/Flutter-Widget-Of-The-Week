@@ -7,7 +7,6 @@ part 'person.g.dart';
 
 @Freezed()
 class UserModel with _$UserModel {
-
   @JsonSerializable(fieldRename: FieldRename.snake)
    factory UserModel({
     required String firstName,
